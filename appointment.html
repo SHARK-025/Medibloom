@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medibloom — Book Doctor Appointment</title>
+  <meta name="description" content="Book a doctor visit in 3 simple steps for seniors or children. Calm, accessible, and friendly.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='30' fill='%23E6F4F2'/><path d='M16 38 C 22 36, 26 28, 32 20 C 35 16, 41 14, 46 16 C 49 17, 52 20, 50 23 C 48 25, 43 27, 39 28 C 45 28, 52 32, 53 36 C 48 37, 42 36, 36 34 C 33 37, 28 42, 22 44 Z' fill='%23006B67'/></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Accessible Skip Navigation Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Top Accessibility Quick Bar -->
+  <aside class="top-bar-assist" aria-label="Accessibility options">
+    <div class="assist-group">
+      <span>👁️ Text Size:</span>
+      <div class="font-size-btns" role="group" aria-label="Adjust font size">
+        <button type="button" class="btn-font-size" data-size="normal" aria-pressed="true" aria-label="Standard text size">A</button>
+        <button type="button" class="btn-font-size" data-size="large" aria-pressed="false" aria-label="Large text size">A+</button>
+        <button type="button" class="btn-font-size" data-size="xlarge" aria-pressed="false" aria-label="Extra large text size">A++</button>
+      </div>
+    </div>
+    <div class="assist-group">
+      <span aria-hidden="true">🕊️</span>
+      <span>High Contrast • Senior &amp; Child Friendly</span>
+    </div>
+  </aside>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="header-container">
+      <a href="index.html" class="brand-wrapper" aria-label="Medibloom Home">
+        <svg class="brand-logo-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="#E6F4F2" stroke="#006B67" stroke-width="2.5" />
+          <path d="M16 38 C 22 36, 26 28, 32 20 C 35 16, 41 14, 46 16 C 49 17, 52 20, 50 23 C 48 25, 43 27, 39 28 C 45 28, 52 32, 53 36 C 48 37, 42 36, 36 34 C 33 37, 28 42, 22 44 Z" fill="#006B67" />
+          <path d="M29 23 C 33 13, 41 9, 44 11 C 41 16, 36 21, 31 24 Z" fill="#064542" />
+          <path d="M47 38 C 50 40, 51 44, 48 46 C 45 48, 42 46, 41 43 C 44 42, 45 40, 47 38 Z" fill="#10B981" />
+          <circle cx="46" cy="18" r="1.5" fill="#FFFFFF" />
+        </svg>
+        <div class="brand-text-group">
+          <span class="brand-title">Medibloom</span>
+          <span class="brand-tagline">Health That Grows Daily</span>
+        </div>
+      </a>
+
+      <!-- Main Navigation -->
+      <nav class="site-nav" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          Today
+        </a>
+        <a href="medicine.html" class="nav-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path>
+            <path d="m8.5 8.5 7 7"></path>
+          </svg>
+          Medicine Guide
+        </a>
+        <a href="appointment.html" class="nav-link active" aria-current="page">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M19 8v6"></path>
+            <path d="M22 11h-6"></path>
+          </svg>
+          Book Appointment
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main id="main-content" class="main-wrapper" role="main">
+    
+    <!-- Wizard Page Header -->
+    <div class="wizard-header">
+      <h1>Schedule a Doctor Visit</h1>
+      <p>Easy 3-step booking designed for older adults and caring parents.</p>
+    </div>
+
+    <!-- 3-Step Accessible Stepper Progress -->
+    <ol class="stepper-nav" aria-label="Appointment booking steps">
+      <li class="step-item active" id="indicator-step-1" aria-current="step">
+        <span class="step-bubble" aria-hidden="true">1</span>
+        <span>1. Choose Doctor</span>
+      </li>
+      <li class="step-divider" aria-hidden="true"></li>
+      <li class="step-item" id="indicator-step-2">
+        <span class="step-bubble" aria-hidden="true">2</span>
+        <span>2. Choose Time Slot</span>
+      </li>
+      <li class="step-divider" aria-hidden="true"></li>
+      <li class="step-item" id="indicator-step-3">
+        <span class="step-bubble" aria-hidden="true">3</span>
+        <span>3. Confirm Details</span>
+      </li>
+    </ol>
+
+    <!-- Global Wizard Alert / Helper Notice -->
+    <div id="wizard-error-banner" 
+         role="alert" 
+         aria-live="assertive" 
+         style="display:none; background: #fee2e2; border: 2px solid #ef4444; color: #991b1b; padding: 14px 20px; border-radius: var(--radius-md); font-weight: 700; margin-bottom: 20px;">
+    </div>
+
+    <!-- =========================================================================
+         STEP 1: CHOOSE DOCTOR
+         ========================================================================= -->
+    <section class="wizard-step-panel current" 
+             id="step-panel-1" 
+             role="region" 
+             aria-labelledby="step-1-title" 
+             tabindex="-1">
+      <div class="step-heading-group">
+        <h2 class="step-legend" id="step-1-title">Step 1: Choose Your Doctor or Specialist</h2>
+        <p class="step-helper">Click any doctor card below to select who you'd like to visit.</p>
+      </div>
+
+      <div class="doctor-cards-grid" id="doctor-list" role="radiogroup" aria-label="Choose a doctor">
+        <!-- Rendered by JavaScript -->
+      </div>
+
+      <div class="wizard-nav-actions">
+        <a href="index.html" class="btn btn-secondary">
+          &larr; Cancel and Return
+        </a>
+        <button type="button" class="btn btn-primary btn-large" id="btn-next-step-1">
+          Continue to Step 2: Date &amp; Time &rarr;
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         STEP 2: CHOOSE DATE & TIME SLOT
+         ========================================================================= -->
+    <section class="wizard-step-panel" 
+             id="step-panel-2" 
+             role="region" 
+             aria-labelledby="step-2-title" 
+             tabindex="-1">
+      <div class="step-heading-group">
+        <h2 class="step-legend" id="step-2-title">Step 2: Choose Your Date and Time Slot</h2>
+        <p class="step-helper">Pick an appointment day and your preferred time of day.</p>
+      </div>
+
+      <!-- Doctor Recap -->
+      <div class="selected-doc-recap" id="step-2-doc-recap" aria-live="polite">
+        <!-- Injected by JS -->
+      </div>
+
+      <!-- Date Selection -->
+      <div class="form-group-accessible">
+        <label for="appointment-date" class="form-label-accessible">
+          📅 1. Select Date:
+        </label>
+        <input type="date" 
+               id="appointment-date" 
+               class="form-input-accessible" 
+               aria-describedby="date-hints"
+               required>
+        <div id="date-hints" class="quick-dates-row">
+          <button type="button" class="btn-date-preset" onclick="setPresetDate(1)">Tomorrow</button>
+          <button type="button" class="btn-date-preset" onclick="setPresetDate(2)">In 2 Days</button>
+          <button type="button" class="btn-date-preset" onclick="setPresetDate(7)">Next Week</button>
+        </div>
+      </div>
+
+      <!-- Time Slot Selection -->
+      <div class="form-group-accessible">
+        <label class="form-label-accessible" id="slots-label">
+          ⏰ 2. Choose an Available Time Slot:
+        </label>
+        <div class="slots-grid" id="slots-container" role="radiogroup" aria-labelledby="slots-label">
+          <!-- Injected by JS based on chosen doctor -->
+        </div>
+      </div>
+
+      <div class="wizard-nav-actions">
+        <button type="button" class="btn btn-secondary" id="btn-back-to-1">
+          &larr; Back to Doctor Selection
+        </button>
+        <button type="button" class="btn btn-primary btn-large" id="btn-next-step-2">
+          Continue to Step 3: Confirm &rarr;
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         STEP 3: PATIENT DETAILS & CONFIRM
+         ========================================================================= -->
+    <section class="wizard-step-panel" 
+             id="step-panel-3" 
+             role="region" 
+             aria-labelledby="step-3-title" 
+             tabindex="-1">
+      <div class="step-heading-group">
+        <h2 class="step-legend" id="step-3-title">Step 3: Review and Confirm Your Visit</h2>
+        <p class="step-helper">Check the details and provide the patient name so the clinic is ready for you.</p>
+      </div>
+
+      <!-- Chosen Details Summary Recap -->
+      <div class="review-summary-card" aria-label="Appointment summary so far">
+        <h3 style="font-size: 1.25rem; color: var(--teal-dark); margin-bottom: 12px;">
+          Appointment Preview
+        </h3>
+        <div class="review-row">
+          <span class="review-key">Selected Doctor:</span>
+          <span class="review-val" id="summary-doc">Dr. Robert Vance</span>
+        </div>
+        <div class="review-row">
+          <span class="review-key">Clinic Location:</span>
+          <span class="review-val" id="summary-clinic">Oakridge Senior Health Center, Indiranagar, Bengaluru</span>
+        </div>
+        <div class="review-row">
+          <span class="review-key">Appointment Date:</span>
+          <span class="review-val" id="summary-date">Tomorrow</span>
+        </div>
+        <div class="review-row">
+          <span class="review-key">Time Slot:</span>
+          <span class="review-val" id="summary-time">10:30 AM</span>
+        </div>
+      </div>
+
+      <!-- Patient Information Form -->
+      <form id="patient-details-form" onsubmit="return false;" novalidate>
+        <div class="patient-form-grid">
+          
+          <div class="form-group-accessible">
+            <label for="patient-name" class="form-label-accessible">
+              👤 Patient Full Name <span style="color:#b91c1c;">*</span>
+            </label>
+            <input type="text" 
+                   id="patient-name" 
+                   class="accessible-input" 
+                   placeholder="e.g. Margaret Chen" 
+                   required
+                   autocomplete="name">
+          </div>
+
+          <div class="form-group-accessible">
+            <label for="patient-age-group" class="form-label-accessible">
+              🎂 Age Group <span style="color:#b91c1c;">*</span>
+            </label>
+            <select id="patient-age-group" class="accessible-input" required>
+              <option value="Senior (55+)">Older Adult (Age 55+)</option>
+              <option value="Child (4-12)">Child (Ages 4-12)</option>
+              <option value="Youth (13-18)">Teen / Youth (Ages 13-18)</option>
+              <option value="Adult Caregiver">Adult / Caregiver</option>
+            </select>
+          </div>
+
+          <div class="form-group-accessible">
+            <label for="patient-phone" class="form-label-accessible">
+              📞 Phone Number (for friendly SMS reminder) <span style="color:#b91c1c;">*</span>
+            </label>
+            <input type="tel" 
+                   id="patient-phone" 
+                   class="accessible-input" 
+                   placeholder="(555) 000-0000" 
+                   required
+                   autocomplete="tel">
+          </div>
+
+          <div class="form-group-accessible">
+            <label for="visit-reason" class="form-label-accessible">
+              📝 Reason for Visit
+            </label>
+            <select id="visit-reason" class="accessible-input">
+              <option value="Routine Checkup & Wellness">Routine Checkup &amp; Wellness</option>
+              <option value="Prescription Refill / Adjustment">Prescription Refill / Adjustment</option>
+              <option value="Blood Pressure & Heart Review">Blood Pressure &amp; Heart Review</option>
+              <option value="Joint Pain / Mobility Check">Joint Pain / Mobility Check</option>
+              <option value="Pediatric Cough / Ear / Fever">Pediatric Cough / Ear / Fever</option>
+              <option value="Other / General Consultation">Other / General Consultation</option>
+            </select>
+          </div>
+
+          <div class="form-full-width">
+            <label for="special-notes" class="form-label-accessible">
+              ♿ Accessibility or Comfort Needs (Optional)
+            </label>
+            <input type="text" 
+                   id="special-notes" 
+                   class="accessible-input" 
+                   placeholder="e.g. Wheelchair ramp needed, speak loudly and clearly, child is nervous">
+          </div>
+
+        </div>
+
+        <div class="wizard-nav-actions">
+          <button type="button" class="btn btn-secondary" id="btn-back-to-2">
+            &larr; Back to Date &amp; Time
+          </button>
+          <button type="button" class="btn btn-success btn-large" id="btn-submit-booking">
+            <span aria-hidden="true">✓</span>
+            <span>Confirm and Book Appointment</span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <svg class="brand-logo-svg" style="width:36px; height:36px;" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="#E6F4F2" stroke="#006B67" stroke-width="2.5" />
+          <path d="M16 38 C 22 36, 26 28, 32 20 C 35 16, 41 14, 46 16 C 49 17, 52 20, 50 23 C 48 25, 43 27, 39 28 C 45 28, 52 32, 53 36 C 48 37, 42 36, 36 34 C 33 37, 28 42, 22 44 Z" fill="#006B67" />
+          <path d="M29 23 C 33 13, 41 9, 44 11 C 41 16, 36 21, 31 24 Z" fill="#064542" />
+        </svg>
+        <span>Medibloom</span>
+      </div>
+      <div class="footer-tagline">“Health That Grows Daily”</div>
+      <div class="footer-copy">Designed with high contrast &amp; large text for seniors, children, and caring families.</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    /**
+     * 3-Step Appointment Wizard Logic:
+     * - Step 1: Doctor selection (supports ?doctorId= param from medicine page)
+     * - Step 2: Date selection (min tomorrow, quick chips) + time slots
+     * - Step 3: Patient details & validation
+     * - Save to localStorage and redirect to confirmation.html
+     */
+    document.addEventListener("DOMContentLoaded", () => {
+      // Wizard State
+      let currentStep = 1;
+      let selectedDoctorId = null;
+      let selectedDate = "";
+      let selectedSlot = "";
+
+      // Check URL for doctorId
+      const urlParams = new URLSearchParams(window.location.search);
+      const preselectedDocId = urlParams.get("doctorId");
+      if (preselectedDocId && MEDIBLOOM_DATA.doctors.some(d => d.id === preselectedDocId)) {
+        selectedDoctorId = preselectedDocId;
+      } else {
+        selectedDoctorId = MEDIBLOOM_DATA.doctors[0].id;
+      }
+
+      // Default Date: Tomorrow
+      const dateInput = document.getElementById("appointment-date");
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const yyyy = tomorrow.getFullYear();
+      const mm = String(tomorrow.getMonth() + 1).padStart(2, "0");
+      const dd = String(tomorrow.getDate()).padStart(2, "0");
+      const minDateStr = `${yyyy}-${mm}-${dd}`;
+      dateInput.min = minDateStr;
+      dateInput.value = minDateStr;
+      selectedDate = minDateStr;
+
+      dateInput.addEventListener("change", (e) => {
+        selectedDate = e.target.value;
+      });
+
+      // Quick Date presets
+      window.setPresetDate = function(daysAhead) {
+        const d = new Date();
+        d.setDate(d.getDate() + daysAhead);
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, "0");
+        const day = String(d.getDate()).padStart(2, "0");
+        const str = `${y}-${m}-${day}`;
+        dateInput.value = str;
+        selectedDate = str;
+        MedibloomApp.showToast(`Selected date: ${d.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })}`, "📅");
+      };
+
+      // Step indicator elements
+      const ind1 = document.getElementById("indicator-step-1");
+      const ind2 = document.getElementById("indicator-step-2");
+      const ind3 = document.getElementById("indicator-step-3");
+
+      const panel1 = document.getElementById("step-panel-1");
+      const panel2 = document.getElementById("step-panel-2");
+      const panel3 = document.getElementById("step-panel-3");
+      const errorBanner = document.getElementById("wizard-error-banner");
+
+      function showError(msg) {
+        errorBanner.textContent = msg;
+        errorBanner.style.display = "block";
+        errorBanner.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+
+      function clearError() {
+        errorBanner.style.display = "none";
+        errorBanner.textContent = "";
+      }
+
+      // Step transition manager
+      function goToStep(step) {
+        clearError();
+        currentStep = step;
+
+        // Toggle panels
+        panel1.classList.remove("current");
+        panel2.classList.remove("current");
+        panel3.classList.remove("current");
+
+        ind1.classList.remove("active", "completed");
+        ind2.classList.remove("active", "completed");
+        ind3.classList.remove("active", "completed");
+
+        if (step === 1) {
+          panel1.classList.add("current");
+          ind1.classList.add("active");
+          ind1.setAttribute("aria-current", "step");
+          ind2.removeAttribute("aria-current");
+          ind3.removeAttribute("aria-current");
+          panel1.focus();
+        } else if (step === 2) {
+          panel2.classList.add("current");
+          ind1.classList.add("completed");
+          ind2.classList.add("active");
+          ind1.removeAttribute("aria-current");
+          ind2.setAttribute("aria-current", "step");
+          ind3.removeAttribute("aria-current");
+          renderStep2();
+          panel2.focus();
+        } else if (step === 3) {
+          panel3.classList.add("current");
+          ind1.classList.add("completed");
+          ind2.classList.add("completed");
+          ind3.classList.add("active");
+          ind1.removeAttribute("aria-current");
+          ind2.removeAttribute("aria-current");
+          ind3.setAttribute("aria-current", "step");
+          renderStep3();
+          panel3.focus();
+        }
+
+        window.scrollTo({ top: 120, behavior: "smooth" });
+      }
+
+      // STEP 1: Render Doctors
+      const docListContainer = document.getElementById("doctor-list");
+      function renderDoctors() {
+        docListContainer.innerHTML = MEDIBLOOM_DATA.doctors.map(doc => {
+          const isSelected = doc.id === selectedDoctorId;
+          return `
+            <div class="doc-select-card ${isSelected ? 'selected' : ''}" 
+                 role="radio" 
+                 tabindex="0"
+                 aria-checked="${isSelected ? 'true' : 'false'}"
+                 data-docid="${doc.id}"
+                 onclick="selectDoctor('${doc.id}')"
+                 onkeydown="if(event.key === ' ' || event.key === 'Enter') { selectDoctor('${doc.id}'); event.preventDefault(); }">
+              <div>
+                <div class="doc-card-top">
+                  <div class="doc-avatar" style="background-color: ${doc.avatarBg}">
+                    ${doc.avatarInitials}
+                  </div>
+                  <div>
+                    <h3 class="doc-name">${doc.name}</h3>
+                    <div class="doc-specialty">${doc.specialty}</div>
+                    <span class="doc-audience-badge">${doc.audience}</span>
+                  </div>
+                </div>
+                <p class="doc-bio">${doc.bio}</p>
+              </div>
+              <div class="doc-card-footer">
+                <span>📍 ${doc.clinic}</span>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      window.selectDoctor = function(docId) {
+        selectedDoctorId = docId;
+        renderDoctors();
+      };
+
+      // STEP 2: Render Step 2 (Recap & Time Slots)
+      function renderStep2() {
+        const doc = MEDIBLOOM_DATA.doctors.find(d => d.id === selectedDoctorId);
+        const recapEl = document.getElementById("step-2-doc-recap");
+        recapEl.innerHTML = `
+          <div class="doc-avatar" style="background-color: ${doc.avatarBg}; width:48px; height:48px; font-size:1.1rem;">
+            ${doc.avatarInitials}
+          </div>
+          <div>
+            <strong>Booking with:</strong> ${doc.name} — <em>${doc.specialty}</em>
+            <div style="font-size: 1.05rem; color: var(--text-muted);">Clinic: ${doc.clinic}</div>
+          </div>
+        `;
+
+        // Default slot to first if not chosen
+        if (!selectedSlot && doc.timeSlots.length > 0) {
+          selectedSlot = doc.timeSlots[0];
+        }
+
+        const slotsContainer = document.getElementById("slots-container");
+        slotsContainer.innerHTML = doc.timeSlots.map(slot => {
+          const isSel = slot === selectedSlot;
+          return `
+            <button type="button" 
+                    class="slot-btn ${isSel ? 'selected' : ''}" 
+                    role="radio"
+                    aria-checked="${isSel ? 'true' : 'false'}"
+                    onclick="selectSlot('${slot}')">
+              ${slot}
+            </button>
+          `;
+        }).join("");
+      }
+
+      window.selectSlot = function(slot) {
+        selectedSlot = slot;
+        renderStep2();
+      };
+
+      // STEP 3: Render Review Summary
+      function renderStep3() {
+        const doc = MEDIBLOOM_DATA.doctors.find(d => d.id === selectedDoctorId);
+        document.getElementById("summary-doc").textContent = `${doc.name} (${doc.specialty})`;
+        document.getElementById("summary-clinic").textContent = doc.clinic;
+
+        // Friendly formatted date
+        if (selectedDate) {
+          const [yr, mo, da] = selectedDate.split("-");
+          const dateObj = new Date(yr, mo - 1, da);
+          document.getElementById("summary-date").textContent = dateObj.toLocaleDateString(undefined, {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+        } else {
+          document.getElementById("summary-date").textContent = "Selected Date";
+        }
+
+        document.getElementById("summary-time").textContent = selectedSlot || "Morning Slot";
+      }
+
+      // Button Handlers
+      document.getElementById("btn-next-step-1").addEventListener("click", () => {
+        if (!selectedDoctorId) {
+          showError("Please click to choose a doctor before continuing.");
+          return;
+        }
+        goToStep(2);
+      });
+
+      document.getElementById("btn-back-to-1").addEventListener("click", () => {
+        goToStep(1);
+      });
+
+      document.getElementById("btn-next-step-2").addEventListener("click", () => {
+        if (!selectedDate) {
+          showError("Please pick an appointment date.");
+          return;
+        }
+        if (!selectedSlot) {
+          showError("Please choose one of the available time slots.");
+          return;
+        }
+        goToStep(3);
+      });
+
+      document.getElementById("btn-back-to-2").addEventListener("click", () => {
+        goToStep(2);
+      });
+
+      // Confirm & Save
+      document.getElementById("btn-submit-booking").addEventListener("click", () => {
+        const nameInput = document.getElementById("patient-name");
+        const phoneInput = document.getElementById("patient-phone");
+        const ageSelect = document.getElementById("patient-age-group");
+        const reasonSelect = document.getElementById("visit-reason");
+        const notesInput = document.getElementById("special-notes");
+
+        const patientName = nameInput.value.trim();
+        const patientPhone = phoneInput.value.trim();
+
+        if (!patientName) {
+          showError("Please enter the patient's full name.");
+          nameInput.focus();
+          return;
+        }
+
+        if (!patientPhone) {
+          showError("Please provide a phone number for appointment confirmation and reminder.");
+          phoneInput.focus();
+          return;
+        }
+
+        const doc = MEDIBLOOM_DATA.doctors.find(d => d.id === selectedDoctorId);
+
+        // Build appointment object
+        const appointmentData = {
+          id: "apt-" + Date.now(),
+          doctorName: doc.name,
+          doctorSpecialty: doc.specialty,
+          clinic: doc.clinic,
+          date: selectedDate,
+          timeSlot: selectedSlot,
+          patientName: patientName,
+          ageGroup: ageSelect.value,
+          phone: patientPhone,
+          reason: reasonSelect.value,
+          specialNotes: notesInput.value.trim() || "None",
+          bookedAt: new Date().toISOString()
+        };
+
+        // Save to localStorage
+        try {
+          localStorage.setItem(STORAGE_KEYS.PENDING_APPOINTMENT, JSON.stringify(appointmentData));
+          
+          // Also append to booked list
+          const listRaw = localStorage.getItem(STORAGE_KEYS.BOOKED_APPOINTMENTS);
+          const list = listRaw ? JSON.parse(listRaw) : [];
+          list.push(appointmentData);
+          localStorage.setItem(STORAGE_KEYS.BOOKED_APPOINTMENTS, JSON.stringify(list));
+        } catch (e) {
+          console.error("Storage error:", e);
+        }
+
+        // Navigate to confirmation page
+        window.location.href = "confirmation.html";
+      });
+
+      // Initial Render
+      renderDoctors();
+    });
+  </script>
+</body>
+</html>

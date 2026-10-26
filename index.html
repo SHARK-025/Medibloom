@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medibloom — Accessible Medicine & Appointment Companion</title>
+  <meta name="description" content="Medibloom: A calm, accessible medicine and appointment companion for adults 55+ and children. Health That Grows Daily.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='30' fill='%23E6F4F2'/><path d='M16 38 C 22 36, 26 28, 32 20 C 35 16, 41 14, 46 16 C 49 17, 52 20, 50 23 C 48 25, 43 27, 39 28 C 45 28, 52 32, 53 36 C 48 37, 42 36, 36 34 C 33 37, 28 42, 22 44 Z' fill='%23006B67'/></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* SPA View switching styles */
+    .spa-view {
+      display: none;
+    }
+    .spa-view.active {
+      display: block;
+      animation: spaFadeIn 0.25s ease-in-out;
+    }
+    @keyframes spaFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .nav-link {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Accessible Skip Navigation Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Top Accessibility Quick Bar -->
+  <aside class="top-bar-assist" aria-label="Accessibility & display options">
+    <div class="assist-group">
+      <span>👁️ Text Size:</span>
+      <div class="font-size-btns" role="group" aria-label="Adjust font size">
+        <button type="button" class="btn-font-size" data-size="normal" aria-pressed="true" aria-label="Standard text size">A</button>
+        <button type="button" class="btn-font-size" data-size="large" aria-pressed="false" aria-label="Large text size">A+</button>
+        <button type="button" class="btn-font-size" data-size="xlarge" aria-pressed="false" aria-label="Extra large text size">A++</button>
+      </div>
+    </div>
+    <div class="assist-group">
+      <span aria-hidden="true">🕊️</span>
+      <span>High Contrast • Senior &amp; Child Friendly</span>
+    </div>
+  </aside>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="header-container">
+      <a href="#today" class="brand-wrapper" aria-label="Medibloom Home">
+        <!-- Lark-bird SVG Logo -->
+        <svg class="brand-logo-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="#E6F4F2" stroke="#006B67" stroke-width="2.5" />
+          <path d="M16 38 C 22 36, 26 28, 32 20 C 35 16, 41 14, 46 16 C 49 17, 52 20, 50 23 C 48 25, 43 27, 39 28 C 45 28, 52 32, 53 36 C 48 37, 42 36, 36 34 C 33 37, 28 42, 22 44 Z" fill="#006B67" />
+          <path d="M29 23 C 33 13, 41 9, 44 11 C 41 16, 36 21, 31 24 Z" fill="#064542" />
+          <path d="M47 38 C 50 40, 51 44, 48 46 C 45 48, 42 46, 41 43 C 44 42, 45 40, 47 38 Z" fill="#10B981" />
+          <circle cx="46" cy="18" r="1.5" fill="#FFFFFF" />
+        </svg>
+        <div class="brand-text-group">
+          <span class="brand-title">Medibloom</span>
+          <span class="brand-tagline">Health That Grows Daily</span>
+        </div>
+      </a>
+
+      <!-- Main Navigation -->
+      <nav class="site-nav" aria-label="Main Navigation">
+        <a href="#today" class="nav-link active" id="nav-today" aria-current="page">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          Today
+        </a>
+        <a href="#medicine" class="nav-link" id="nav-medicine">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path>
+            <path d="m8.5 8.5 7 7"></path>
+          </svg>
+          Medicine Guide
+        </a>
+        <a href="#appointment" class="nav-link" id="nav-appointment">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M19 8v6"></path>
+            <path d="M22 11h-6"></path>
+          </svg>
+          Book Appointment
+        </a>
+
+        <!-- Animated Dark/Light Mode Button placed beside Book Appointment -->
+        <button type="button" id="theme-toggle-btn" class="nav-theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+          <span class="theme-icon-container">
+            <span id="theme-icon" class="theme-icon-animated" aria-hidden="true">🌙</span>
+          </span>
+          <span id="theme-label" class="theme-label-text">Dark Mode</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main id="main-content" class="main-wrapper" role="main">
+
+    <!-- =========================================================================
+         SECTION 1: TODAY'S SCHEDULE (HOME VIEW)
+         ========================================================================= -->
+    <div id="view-today" class="spa-view active">
+      <!-- Today's Hero Banner with Date & Progress Tracker -->
+      <section class="today-header-banner" aria-labelledby="today-heading">
+        <div class="date-greeting-group">
+          <div class="date-pill" id="current-date-display">
+            <span aria-hidden="true">📅</span>
+            <span>Today's Medicine Schedule</span>
+          </div>
+          <h1 id="today-heading" class="greeting-text">Good day! Stay on track.</h1>
+          <p class="subgreeting">Check off each medicine as you or your family member takes it.</p>
+        </div>
+
+        <!-- Compact Family Medicine Summary -->
+        <div class="family-summary-banner" id="family-summary-banner" role="status" aria-live="polite">
+          <span aria-hidden="true" style="font-size: 1.25rem;">👨‍👩‍👧‍👦</span>
+          <span id="family-summary-text">Senior: 0 of 3 doses taken | Child: 0 of 3 doses taken</span>
+        </div>
+
+        <!-- Accessible Live Progress Card -->
+        <div class="progress-container-card" role="region" aria-label="Medicine Completion Progress">
+          <div class="progress-header-info">
+            <span class="progress-title" id="progress-text-label">Today's Progress</span>
+            <span class="progress-counter" id="progress-fraction" aria-live="polite">0 of 6 taken</span>
+          </div>
+          
+          <div class="progress-bar-track" 
+               role="progressbar" 
+               id="main-progressbar"
+               aria-valuenow="0" 
+               aria-valuemin="0" 
+               aria-valuemax="100" 
+               aria-labelledby="progress-text-label">
+            <div class="progress-bar-fill" id="progress-fill"></div>
+          </div>
+
+          <div id="progress-breakdown" style="font-size: 1.05rem; color: var(--text-muted); font-weight: 700; margin-top: 8px;">
+            0 Taken • 0 Missed • 6 Upcoming
+          </div>
+
+          <div class="progress-encouragement" id="progress-message" aria-live="polite">
+            <span aria-hidden="true">🌱</span>
+            <span>Let's get started with your scheduled doses!</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filter Buttons: Senior Care / Child Care / All -->
+      <section class="filter-section" aria-label="Filter Medicines by Family Member">
+        <div class="filter-label" id="filter-heading">Showing medicines for:</div>
+        <div class="filter-pills" role="tablist" aria-labelledby="filter-heading">
+          <button type="button" 
+                  class="filter-btn active" 
+                  id="filter-all" 
+                  role="tab" 
+                  aria-selected="true" 
+                  data-filter="all">
+            <span aria-hidden="true">👥</span>
+            <span>All Family Members (<span id="count-all">6</span>)</span>
+          </button>
+          <button type="button" 
+                  class="filter-btn" 
+                  id="filter-senior" 
+                  role="tab" 
+                  aria-selected="false" 
+                  data-filter="senior">
+            <span aria-hidden="true">👵</span>
+            <span>Adults 55+ / Seniors (<span id="count-senior">3</span>)</span>
+          </button>
+          <button type="button" 
+                  class="filter-btn" 
+                  id="filter-child" 
+                  role="tab" 
+                  aria-selected="false" 
+                  data-filter="child">
+            <span aria-hidden="true">🧒</span>
+            <span>Children &amp; Youth (<span id="count-child">3</span>)</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Medicine Cards Grid Container -->
+      <section aria-label="Today's Medicine Cards List">
+        <div class="meds-grid" id="meds-container" aria-live="polite">
+          <!-- Dynamically Rendered by JavaScript -->
+        </div>
+      </section>
+
+      <!-- Need Doctor / Prescription Banner -->
+      <section style="margin-top: 48px;" aria-label="Doctor appointment reminder">
+        <div class="card" style="background: linear-gradient(135deg, #f0faf9 0%, #ffffff 100%); border: 2px dashed var(--teal-primary); display: flex; flex-direction: column; gap: 16px; align-items: flex-start; justify-content: space-between;">
+          <div style="display: flex; gap: 16px; align-items: center;">
+            <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--teal-light); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; border: 2px solid var(--teal-border); flex-shrink: 0;" aria-hidden="true">
+              🩺
+            </div>
+            <div>
+              <h2 style="font-size: 1.4rem; color: var(--teal-dark); margin-bottom: 4px;">Need a checkup or prescription refill?</h2>
+              <p style="color: var(--text-muted); font-size: 1.15rem; margin: 0;">Book a quiet, friendly visit with Dr. Vance or Dr. Chen in just 3 quick steps.</p>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="navigateTo('appointment')" style="align-self: flex-start;">
+            Schedule an Appointment &rarr;
+          </button>
+        </div>
+      </section>
+    </div>
+
+
+    <!-- =========================================================================
+         SECTION 2: MEDICINE DETAIL & PLAIN-LANGUAGE GUIDE VIEW
+         ========================================================================= -->
+    <div id="view-medicine" class="spa-view">
+      <!-- Top Action Bar: Back to Today & Medicine Switcher -->
+      <div class="detail-top-nav">
+        <button type="button" class="btn btn-secondary" onclick="navigateTo('today')" aria-label="Go back to Today's Medicine Schedule">
+          <span aria-hidden="true">&larr;</span>
+          <span>Back to Today</span>
+        </button>
+
+        <div class="med-picker-row">
+          <label for="medicine-selector" style="font-weight: 700; color: var(--teal-dark);">Select Medicine:</label>
+          <select id="medicine-selector" class="picker-select" aria-label="Choose a medicine to inspect in plain language">
+            <!-- Populated by JavaScript -->
+          </select>
+        </div>
+      </div>
+
+      <!-- Medicine Detail Card -->
+      <article class="detail-hero-card" id="detail-card-container" aria-live="polite">
+        <!-- Injected by JavaScript -->
+      </article>
+    </div>
+
+
+    <!-- =========================================================================
+         SECTION 3: 3-STEP APPOINTMENT BOOKING WIZARD VIEW
+         ========================================================================= -->
+    <div id="view-appointment" class="spa-view">
+      <!-- Wizard Page Header -->
+      <div class="wizard-header">
+        <h1>Schedule a Doctor Visit</h1>
+        <p>Easy 3-step booking designed for older adults and caring parents.</p>
+      </div>
+
+      <!-- 3-Step Accessible Stepper Progress -->
+      <ol class="stepper-nav" aria-label="Appointment booking steps">
+        <li class="step-item active" 
+            id="indicator-step-1" 
+            aria-current="step" 
+            tabindex="0" 
+            role="button" 
+            aria-label="Step 1: Choose Doctor" 
+            onclick="goToWizardStep(1)" 
+            onkeydown="if(event.key==='Enter'||event.key===' '){goToWizardStep(1);event.preventDefault();}">
+          <span class="step-bubble" aria-hidden="true">1</span>
+          <span>1. Choose Doctor</span>
+        </li>
+        <li class="step-divider" aria-hidden="true"></li>
+        <li class="step-item" 
+            id="indicator-step-2" 
+            tabindex="0" 
+            role="button" 
+            aria-label="Step 2: Choose Time Slot" 
+            onclick="if(wizardSelectedDoctorId) goToWizardStep(2)" 
+            onkeydown="if((event.key==='Enter'||event.key===' ') && wizardSelectedDoctorId){goToWizardStep(2);event.preventDefault();}">
+          <span class="step-bubble" aria-hidden="true">2</span>
+          <span>2. Choose Time Slot</span>
+        </li>
+        <li class="step-divider" aria-hidden="true"></li>
+        <li class="step-item" 
+            id="indicator-step-3" 
+            tabindex="0" 
+            role="button" 
+            aria-label="Step 3: Confirm Details" 
+            onclick="if(wizardSelectedDoctorId && wizardSelectedDate && wizardSelectedSlot) goToWizardStep(3)" 
+            onkeydown="if((event.key==='Enter'||event.key===' ') && wizardSelectedDoctorId && wizardSelectedDate && wizardSelectedSlot){goToWizardStep(3);event.preventDefault();}">
+          <span class="step-bubble" aria-hidden="true">3</span>
+          <span>3. Confirm Details</span>
+        </li>
+      </ol>
+
+      <!-- Global Wizard Alert / Helper Notice -->
+      <div id="wizard-error-banner" 
+           role="alert" 
+           aria-live="assertive" 
+           style="display:none; background: #fee2e2; border: 2px solid #ef4444; color: #991b1b; padding: 14px 20px; border-radius: var(--radius-md); font-weight: 700; margin-bottom: 20px;">
+      </div>
+
+      <!-- Step 1: Doctor Selection -->
+      <section class="wizard-step-panel current" 
+               id="step-panel-1" 
+               role="region" 
+               aria-labelledby="step-1-title" 
+               tabindex="-1">
+        <div class="step-heading-group">
+          <h2 class="step-legend" id="step-1-title">Step 1: Choose Your Doctor or Specialist</h2>
+          <p class="step-helper">Click any doctor card below to select who you'd like to visit.</p>
+        </div>
+
+        <div class="doctor-cards-grid" id="doctor-list" role="radiogroup" aria-label="Choose a doctor">
+          <!-- Rendered by JavaScript -->
+        </div>
+
+        <div class="wizard-nav-actions">
+          <button type="button" class="btn btn-secondary" onclick="navigateTo('today')">
+            &larr; Cancel and Return
+          </button>
+          <button type="button" class="btn btn-primary btn-large" id="btn-next-step-1">
+            Continue to Step 2: Date &amp; Time &rarr;
+          </button>
+        </div>
+      </section>
+
+      <!-- Step 2: Date & Time Slot Selection -->
+      <section class="wizard-step-panel" 
+               id="step-panel-2" 
+               role="region" 
+               aria-labelledby="step-2-title" 
+               tabindex="-1">
+        <div class="step-heading-group">
+          <h2 class="step-legend" id="step-2-title">Step 2: Choose Your Date and Time Slot</h2>
+          <p class="step-helper">Pick an appointment day and your preferred time of day.</p>
+        </div>
+
+        <!-- Doctor Recap -->
+        <div class="selected-doc-recap" id="step-2-doc-recap" aria-live="polite">
+          <!-- Injected by JS -->
+        </div>
+
+        <!-- Date Selection -->
+        <div class="form-group-accessible">
+          <label for="appointment-date" class="form-label-accessible">
+            📅 1. Select Date:
+          </label>
+          <input type="date" 
+                 id="appointment-date" 
+                 class="form-input-accessible" 
+                 aria-describedby="date-hints"
+                 required>
+          <div id="date-hints" class="quick-dates-row">
+            <button type="button" class="btn-date-preset" onclick="setPresetDate(1)">Tomorrow</button>
+            <button type="button" class="btn-date-preset" onclick="setPresetDate(2)">In 2 Days</button>
+            <button type="button" class="btn-date-preset" onclick="setPresetDate(7)">Next Week</button>
+          </div>
+        </div>
+
+        <!-- Time Slot Selection -->
+        <div class="form-group-accessible">
+          <label class="form-label-accessible" id="slots-label">
+            ⏰ 2. Choose an Available Time Slot:
+          </label>
+          <div class="slots-grid" id="slots-container" role="radiogroup" aria-labelledby="slots-label">
+            <!-- Injected by JS based on chosen doctor -->
+          </div>
+        </div>
+
+        <div class="wizard-nav-actions">
+          <button type="button" class="btn btn-secondary" id="btn-back-to-1">
+            &larr; Back to Doctor Selection
+          </button>
+          <button type="button" class="btn btn-primary btn-large" id="btn-next-step-2">
+            Continue to Step 3: Confirm &rarr;
+          </button>
+        </div>
+      </section>
+
+      <!-- Step 3: Review and Confirm -->
+      <section class="wizard-step-panel" 
+               id="step-panel-3" 
+               role="region" 
+               aria-labelledby="step-3-title" 
+               tabindex="-1">
+        <div class="step-heading-group">
+          <h2 class="step-legend" id="step-3-title">Step 3: Review and Confirm Your Visit</h2>
+          <p class="step-helper">Check the details and provide the patient name so the clinic is ready for you.</p>
+        </div>
+
+        <!-- Chosen Details Summary Recap -->
+        <div class="review-summary-card" aria-label="Appointment summary so far">
+          <h3 style="font-size: 1.25rem; color: var(--teal-dark); margin-bottom: 12px;">
+            Appointment Preview
+          </h3>
+          <div class="review-row">
+            <span class="review-key">Selected Doctor:</span>
+            <span class="review-val" id="summary-doc">Dr. Robert Vance</span>
+          </div>
+          <div class="review-row">
+            <span class="review-key">Clinic Location:</span>
+            <span class="review-val" id="summary-clinic">Oakridge Senior Health Center, Indiranagar, Bengaluru</span>
+          </div>
+          <div class="review-row">
+            <span class="review-key">Appointment Date:</span>
+            <span class="review-val" id="summary-date">Tomorrow</span>
+          </div>
+          <div class="review-row">
+            <span class="review-key">Time Slot:</span>
+            <span class="review-val" id="summary-time">10:30 AM</span>
+          </div>
+        </div>
+
+        <!-- Patient Information Form -->
+        <form id="patient-details-form" onsubmit="return false;" novalidate>
+          <div class="patient-form-grid">
+            
+            <div class="form-group-accessible">
+              <label for="patient-name" class="form-label-accessible">
+                👤 Patient Full Name <span style="color:#b91c1c;">*</span>
+              </label>
+              <input type="text" 
+                     id="patient-name" 
+                     class="accessible-input" 
+                     placeholder="e.g. Margaret Chen" 
+                     required
+                     autocomplete="name"
+                     aria-describedby="patient-name-error">
+              <span id="patient-name-error" class="field-error-msg" role="alert">Patient full name is required.</span>
+            </div>
+
+            <div class="form-group-accessible">
+              <label for="patient-age-group" class="form-label-accessible">
+                🎂 Age Group <span style="color:#b91c1c;">*</span>
+              </label>
+              <select id="patient-age-group" class="accessible-input" required>
+                <option value="Senior (55+)">Older Adult (Age 55+)</option>
+                <option value="Child (4-12)">Child (Ages 4-12)</option>
+                <option value="Youth (13-18)">Teen / Youth (Ages 13-18)</option>
+                <option value="Adult Caregiver">Adult / Caregiver</option>
+              </select>
+            </div>
+
+            <div class="form-group-accessible">
+              <label for="patient-phone" class="form-label-accessible">
+                📞 Phone Number (for friendly SMS reminder) <span style="color:#b91c1c;">*</span>
+              </label>
+              <input type="tel" 
+                     id="patient-phone" 
+                     class="accessible-input" 
+                     placeholder="(555) 321-7890" 
+                     required
+                     autocomplete="tel"
+                     aria-describedby="patient-phone-error">
+              <span id="patient-phone-error" class="field-error-msg" role="alert">Phone number is required.</span>
+            </div>
+
+            <div class="form-group-accessible">
+              <label for="visit-reason" class="form-label-accessible">
+                📝 Reason for Visit
+              </label>
+              <select id="visit-reason" class="accessible-input">
+                <option value="Routine Checkup & Wellness">Routine Checkup &amp; Wellness</option>
+                <option value="Prescription Refill / Adjustment">Prescription Refill / Adjustment</option>
+                <option value="Blood Pressure & Heart Review">Blood Pressure &amp; Heart Review</option>
+                <option value="Joint Pain / Mobility Check">Joint Pain / Mobility Check</option>
+                <option value="Pediatric Cough / Ear / Fever">Pediatric Cough / Ear / Fever</option>
+                <option value="Other / General Consultation">Other / General Consultation</option>
+              </select>
+            </div>
+
+            <div class="form-full-width">
+              <label for="special-notes" class="form-label-accessible">
+                ♿ Accessibility or Comfort Needs (Optional)
+              </label>
+              <input type="text" 
+                     id="special-notes" 
+                     class="accessible-input" 
+                     placeholder="e.g. Wheelchair ramp needed, speak loudly and clearly, child is nervous">
+            </div>
+
+          </div>
+
+          <div class="wizard-nav-actions">
+            <button type="button" class="btn btn-secondary" id="btn-back-to-2">
+              &larr; Back to Date &amp; Time
+            </button>
+            <button type="button" class="btn btn-success btn-large" id="btn-submit-booking">
+              <span aria-hidden="true">✓</span>
+              <span>Confirm and Book Appointment</span>
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+
+    <!-- =========================================================================
+         SECTION 4: APPOINTMENT CONFIRMATION RECEIPT VIEW
+         ========================================================================= -->
+    <div id="view-confirmation" class="spa-view">
+      <div class="confirm-wrapper">
+        <article class="confirm-card" role="region" aria-label="Appointment Confirmation Receipt">
+          <!-- Friendly Checkmark Badge -->
+          <div class="confirm-icon-circle" aria-hidden="true">
+            ✓
+          </div>
+
+          <h1 class="confirm-title" id="confirmation-heading">You're All Set!</h1>
+          <p class="confirm-subtitle" id="confirm-message-text">
+            Your doctor appointment has been successfully scheduled. We look forward to seeing you!
+          </p>
+
+          <!-- Printable Appointment Ticket -->
+          <div class="appointment-ticket" id="appointment-ticket-box">
+            <div class="ticket-header">
+              <span>📋 Appointment Summary</span>
+              <span style="font-size: 0.95rem; background: var(--teal-primary); color: #ffffff; padding: 4px 10px; border-radius: var(--radius-pill);">
+                Confirmed
+              </span>
+            </div>
+
+            <div class="ticket-details-grid" id="ticket-grid">
+              <!-- Populated by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Helpful Reminders for the Visit -->
+          <div class="confirm-helpful-notes">
+            <h3>
+              <span aria-hidden="true">🌱</span>
+              <span>Helpful Reminders for Visit Day</span>
+            </h3>
+            <ul style="padding-left: 24px; font-size: 1.15rem; line-height: 1.6;">
+              <li>Bring your current medicine bottles or your Medibloom app list so your doctor can review them.</li>
+              <li>Arrive 10 minutes early so you have plenty of time to sit down and relax before your checkup.</li>
+              <li>If you have hearing aids or reading glasses, remember to bring them along!</li>
+              <li>Parents: feel free to bring your child’s favorite toy or picture book to make the wait extra cozy.</li>
+            </ul>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="confirm-actions">
+            <button type="button" class="btn btn-primary btn-large" onclick="navigateTo('today')">
+              <span aria-hidden="true">🏠</span>
+              <span>Back to Today Screen</span>
+            </button>
+
+            <button type="button" class="btn btn-secondary" onclick="window.print()" aria-label="Print this appointment confirmation">
+              <span aria-hidden="true">🖨️</span>
+              <span>Print Appointment Card</span>
+            </button>
+          </div>
+        </article>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <svg class="brand-logo-svg" style="width:36px; height:36px;" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="#E6F4F2" stroke="#006B67" stroke-width="2.5" />
+          <path d="M16 38 C 22 36, 26 28, 32 20 C 35 16, 41 14, 46 16 C 49 17, 52 20, 50 23 C 48 25, 43 27, 39 28 C 45 28, 52 32, 53 36 C 48 37, 42 36, 36 34 C 33 37, 28 42, 22 44 Z" fill="#006B67" />
+          <path d="M29 23 C 33 13, 41 9, 44 11 C 41 16, 36 21, 31 24 Z" fill="#064542" />
+        </svg>
+        <span>Medibloom</span>
+      </div>
+      <div class="footer-tagline">“Health That Grows Daily”</div>
+      <div class="footer-copy">Designed with high contrast &amp; large text for seniors, children, and caring families.</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    /**
+     * Medibloom Unified Single-Page Application (SPA) Controller
+     * Handles:
+     * - Tab routing (#today, #medicine, #appointment, #confirmation)
+     * - State synchronization across sections
+     * - Medicine card rendering, dose tracking & voice readouts
+     * - Medicine guide detail view & switcher
+     * - 3-step appointment booking wizard & confirmation receipt
+     */
+
+    let currentSelectedMedicineId = MEDIBLOOM_DATA.medicines[0].id;
+    let wizardSelectedDoctorId = MEDIBLOOM_DATA.doctors[0].id;
+    let wizardSelectedDate = "";
+    let wizardSelectedSlot = "";
+
+    // Global navigation switcher
+    window.navigateTo = function(targetView, params = {}) {
+      const views = {
+        today: document.getElementById("view-today"),
+        medicine: document.getElementById("view-medicine"),
+        appointment: document.getElementById("view-appointment"),
+        confirmation: document.getElementById("view-confirmation")
+      };
+
+      // Set active nav link
+      const navLinks = {
+        today: document.getElementById("nav-today"),
+        medicine: document.getElementById("nav-medicine"),
+        appointment: document.getElementById("nav-appointment")
+      };
+
+      Object.keys(views).forEach(vKey => {
+        if (views[vKey]) {
+          views[vKey].classList.toggle("active", vKey === targetView);
+        }
+      });
+
+      Object.keys(navLinks).forEach(nKey => {
+        if (navLinks[nKey]) {
+          const isActive = (nKey === targetView) || (targetView === "confirmation" && nKey === "appointment");
+          navLinks[nKey].classList.toggle("active", isActive);
+          if (isActive) {
+            navLinks[nKey].setAttribute("aria-current", "page");
+          } else {
+            navLinks[nKey].removeAttribute("aria-current");
+          }
+        }
+      });
+
+      // Handle parameters
+      if (params.medId) {
+        currentSelectedMedicineId = params.medId;
+      }
+      if (params.docId) {
+        wizardSelectedDoctorId = params.docId;
+      }
+
+      // Update URL hash without reload
+      let hash = `#${targetView}`;
+      if (params.medId) hash += `?id=${params.medId}`;
+      else if (params.docId) hash += `?doctorId=${params.docId}`;
+      window.history.pushState(null, "", hash);
+
+      // Trigger section-specific re-renders
+      if (targetView === "today") {
+        renderTodayView();
+      } else if (targetView === "medicine") {
+        renderMedicineGuide();
+      } else if (targetView === "appointment") {
+        goToWizardStep(1);
+        renderWizardDoctors();
+      } else if (targetView === "confirmation") {
+        renderConfirmationReceipt();
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    // Parse URL on initial load or popstate/hashchange
+    function parseRouteFromHash() {
+      const hash = window.location.hash.slice(1);
+      if (!hash) {
+        window.navigateTo("today");
+        return;
+      }
+
+      const [route, queryString] = hash.split("?");
+      const params = {};
+      if (queryString) {
+        const usp = new URLSearchParams(queryString);
+        if (usp.get("id")) params.medId = usp.get("id");
+        if (usp.get("doctorId")) params.docId = usp.get("doctorId");
+      }
+
+      if (["today", "medicine", "appointment", "confirmation"].includes(route)) {
+        window.navigateTo(route, params);
+      } else {
+        window.navigateTo("today");
+      }
+    }
+
+    // =========================================================================
+    // DARK MODE CONTROLLER
+    // Inverts standard interfaces to dark background palettes with light-colored
+    // text for reduced eye strain. One-click toggle between Dark and Light mode.
+    // =========================================================================
+    const DarkModeManager = {
+      init() {
+        const saved = localStorage.getItem("medibloom_dark_mode") === "true";
+        this.apply(saved, false);
+
+        const btn = document.getElementById("theme-toggle-btn");
+        if (btn) {
+          btn.addEventListener("click", () => {
+            const isDark = document.body.classList.contains("dark-mode");
+            const newMode = !isDark;
+            this.apply(newMode, true);
+            MedibloomApp.showToast(newMode ? "Dark mode on 🌙 (Eye strain reduced)" : "Light mode on ☀️", "👁️");
+          });
+        }
+      },
+      apply(enable, animate = false) {
+        document.body.classList.toggle("dark-mode", enable);
+        document.documentElement.setAttribute("data-theme", enable ? "dark" : "light");
+        localStorage.setItem("medibloom_dark_mode", enable);
+
+        const btn = document.getElementById("theme-toggle-btn");
+        const icon = document.getElementById("theme-icon");
+        const label = document.getElementById("theme-label");
+
+        if (btn) {
+          btn.setAttribute("aria-pressed", enable ? "true" : "false");
+          btn.setAttribute("aria-label", enable ? "Switch to light mode" : "Switch to dark mode");
+        }
+        if (icon) {
+          icon.textContent = enable ? "☀️" : "🌙";
+          if (animate) {
+            icon.classList.remove("icon-animate-spin");
+            void icon.offsetWidth; // Force CSS reflow to re-trigger spin animation
+            icon.classList.add("icon-animate-spin");
+          }
+        }
+        if (label) label.textContent = enable ? "Light Mode" : "Dark Mode";
+      }
+    };
+
+    // =========================================================================
+    // SECTION 1 LOGIC: TODAY'S MEDICINE SCHEDULE
+    // =========================================================================
+    let currentFilter = getActiveProfile();
+    let takenState = getTakenState();
+
+    /**
+     * Determines the 3 states of a medicine: Taken, Upcoming / Due, or Missed
+     */
+    function getMedicineStatus(med, takenMap) {
+      // 1. Taken: Always preserved; never marked missed
+      if (takenMap[med.id] === true) {
+        return {
+          status: "taken",
+          badgeClass: "badge-taken",
+          badgeText: "Taken Today",
+          icon: "✓",
+          isTaken: true,
+          isMissed: false
+        };
+      }
+
+      // 2. Check scheduled time against current time today
+      const now = new Date();
+      const currentMinutes = now.getHours() * 60 + now.getMinutes();
+      const medHour = med.scheduledHour !== undefined ? med.scheduledHour : 8;
+      const medMin = med.scheduledMinute !== undefined ? med.scheduledMinute : 0;
+      const scheduledMinutes = medHour * 60 + medMin;
+
+      if (currentMinutes > scheduledMinutes) {
+        return {
+          status: "missed",
+          badgeClass: "badge-missed",
+          badgeText: "Missed",
+          icon: "⚠️",
+          isTaken: false,
+          isMissed: true
+        };
+      } else {
+        return {
+          status: "upcoming",
+          badgeClass: "badge-upcoming",
+          badgeText: "Upcoming",
+          icon: "⏰",
+          isTaken: false,
+          isMissed: false
+        };
+      }
+    }
+
+    function renderTodayView() {
+      takenState = getTakenState();
+      const container = document.getElementById("meds-container");
+      const progressFraction = document.getElementById("progress-fraction");
+      const progressFill = document.getElementById("progress-fill");
+      const progressMessage = document.getElementById("progress-message");
+      const progressBar = document.getElementById("main-progressbar");
+      const breakdownEl = document.getElementById("progress-breakdown");
+      const summaryTextEl = document.getElementById("family-summary-text");
+
+      // Calculate real numbers from actual demo records
+      const seniorMeds = MEDIBLOOM_DATA.medicines.filter(m => m.targetGroup === "senior");
+      const childMeds = MEDIBLOOM_DATA.medicines.filter(m => m.targetGroup === "child");
+
+      const seniorTotal = seniorMeds.length;
+      const seniorTaken = seniorMeds.filter(m => takenState[m.id] === true).length;
+      const seniorMissed = seniorMeds.filter(m => getMedicineStatus(m, takenState).status === "missed").length;
+
+      const childTotal = childMeds.length;
+      const childTaken = childMeds.filter(m => takenState[m.id] === true).length;
+      const childMissed = childMeds.filter(m => getMedicineStatus(m, takenState).status === "missed").length;
+
+      // Update Filter Button badge counts
+      document.getElementById("count-all").textContent = MEDIBLOOM_DATA.medicines.length;
+      document.getElementById("count-senior").textContent = seniorTotal;
+      document.getElementById("count-child").textContent = childTotal;
+
+      // Family Medicine Summary banner based on active tab
+      if (summaryTextEl) {
+        if (currentFilter === "senior") {
+          summaryTextEl.textContent = `Senior: ${seniorTaken} of ${seniorTotal} doses taken${seniorMissed > 0 ? ` (${seniorMissed} missed)` : ''}`;
+        } else if (currentFilter === "child") {
+          summaryTextEl.textContent = `Child: ${childTaken} of ${childTotal} doses taken${childMissed > 0 ? ` (${childMissed} missed)` : ''}`;
+        } else {
+          // All tab: family-wide summary
+          summaryTextEl.textContent = `Senior: ${seniorTaken} of ${seniorTotal} doses taken | Child: ${childTaken} of ${childTotal} doses taken`;
+        }
+      }
+
+      // Filtered list
+      const filtered = MEDIBLOOM_DATA.medicines.filter(m => {
+        if (currentFilter === "senior") return m.targetGroup === "senior";
+        if (currentFilter === "child") return m.targetGroup === "child";
+        return true;
+      });
+
+      const total = filtered.length;
+      const takenCount = filtered.filter(m => takenState[m.id] === true).length;
+      const missedCount = filtered.filter(m => getMedicineStatus(m, takenState).status === "missed").length;
+      const upcomingCount = filtered.filter(m => getMedicineStatus(m, takenState).status === "upcoming").length;
+      const percentage = total > 0 ? Math.round((takenCount / total) * 100) : 0;
+
+      // Progress bar and counts
+      progressFraction.textContent = `${takenCount} of ${total} taken (${percentage}%)`;
+      progressFill.style.width = `${percentage}%`;
+      progressBar.setAttribute("aria-valuenow", percentage);
+      progressBar.setAttribute("aria-valuetext", `${takenCount} of ${total} medicines taken, ${percentage} percent`);
+
+      if (breakdownEl) {
+        breakdownEl.textContent = `${takenCount} Taken • ${missedCount} Missed • ${upcomingCount} Upcoming`;
+      }
+
+      // Progress message guidance
+      if (percentage === 100 && total > 0) {
+        progressMessage.innerHTML = `<span aria-hidden="true">🌟</span> <strong style="color:var(--success-dark)">Outstanding! All doses marked taken for today!</strong>`;
+      } else if (missedCount > 0) {
+        progressMessage.innerHTML = `<span aria-hidden="true">⚠️</span> <span>You have ${missedCount} overdue dose${missedCount > 1 ? 's' : ''}. Follow prescription guidance or consult your doctor; do not take a double dose.</span>`;
+      } else if (percentage >= 50) {
+        progressMessage.innerHTML = `<span aria-hidden="true">👏</span> <span>More than halfway there! Keep it up.</span>`;
+      } else if (takenCount > 0) {
+        progressMessage.innerHTML = `<span aria-hidden="true">🌿</span> <span>Good start! Remember to take your next dose with water.</span>`;
+      } else {
+        progressMessage.innerHTML = `<span aria-hidden="true">🌱</span> <span>Let's get started with your scheduled doses!</span>`;
+      }
+
+      // Empty state
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="med-empty-state" role="status" aria-live="polite">
+            <div class="empty-icon" aria-hidden="true">🌱</div>
+            <h3 class="empty-title">No medicines scheduled for today.</h3>
+            <p class="empty-desc">All family prescriptions are up to date! Relax and enjoy your day, or switch filter tabs to view other members.</p>
+            <button type="button" class="btn btn-secondary" onclick="document.getElementById('filter-all').click();">
+              View All Family Medicines
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(med => {
+        const medStatus = getMedicineStatus(med, takenState);
+        const isTaken = medStatus.isTaken;
+        const isMissed = medStatus.isMissed;
+        const isSenior = med.targetGroup === "senior";
+        const audienceBadge = isSenior
+          ? `<span class="badge badge-senior"><span aria-hidden="true">👵</span> Senior (55+)</span>`
+          : `<span class="badge badge-child"><span aria-hidden="true">🧒</span> Child Care</span>`;
+
+        const pillIcon = med.form.toLowerCase().includes("liquid") || med.form.toLowerCase().includes("syrup") || med.form.toLowerCase().includes("drops")
+          ? "💧"
+          : (med.form.toLowerCase().includes("chewable") ? "🦕" : "💊");
+
+        return `
+          <article class="card med-card ${isTaken ? 'is-taken' : ''}" id="card-${med.id}" aria-labelledby="title-${med.id}">
+            <div class="med-card-header">
+              <div class="med-badges-row">
+                <span class="badge badge-time">
+                  <span aria-hidden="true">⏰</span> ${med.timeLabel}
+                </span>
+                ${audienceBadge}
+                <span class="badge ${medStatus.badgeClass}">
+                  <span aria-hidden="true">${medStatus.icon}</span> ${medStatus.badgeText}
+                </span>
+              </div>
+              <div class="pill-visual-circle" aria-hidden="true">
+                ${pillIcon}
+              </div>
+            </div>
+
+            <div class="med-title-group">
+              <h2 class="med-name" id="title-${med.id}">${med.name}</h2>
+              <div class="med-common-name">${med.commonName}</div>
+            </div>
+
+            <div class="med-dosage-box">
+              <span aria-hidden="true">📏</span>
+              <span><strong>Dose:</strong> ${med.dosage} (${med.form})</span>
+            </div>
+
+            <div class="med-cue">
+              <strong>Instruction:</strong> ${med.instructions}
+            </div>
+
+            ${isMissed ? `
+              <div class="med-missed-guidance" role="note">
+                <span aria-hidden="true" style="font-size: 1.25rem;">⚠️</span>
+                <span><strong>Missed Dose Guidance:</strong> Scheduled time has passed. Do not double up; follow your prescription instructions or consult Dr. Vance / your pharmacist.</span>
+              </div>
+            ` : ''}
+
+            <div style="display:flex; justify-content: flex-end; margin-bottom: 12px;">
+              <button type="button" 
+                      class="btn-icon-audio" 
+                      onclick="readMed('${med.id}', this)"
+                      aria-label="Listen aloud to plain explanation for ${med.name}" 
+                      aria-pressed="false">
+                🔊 <span>Listen</span>
+              </button>
+            </div>
+
+            <div class="med-card-actions">
+              <button type="button" 
+                      class="btn btn-toggle-taken ${isTaken ? 'taken' : 'unmarked'}"
+                      id="btn-toggle-${med.id}"
+                      onclick="toggleTaken('${med.id}')"
+                      aria-pressed="${isTaken ? 'true' : 'false'}"
+                      aria-label="${isTaken ? 'Mark ' + med.name + ' as not taken' : 'Mark ' + med.name + ' as taken'}">
+                <span aria-hidden="true" style="font-size: 1.3rem;">${isTaken ? '✓' : '○'}</span>
+                <span>${isTaken ? 'Taken Today' : 'Mark as Taken'}</span>
+              </button>
+
+              <button type="button" 
+                 class="link-details" 
+                 style="background:none; border:none; cursor:pointer;"
+                 onclick="navigateTo('medicine', { medId: '${med.id}' })"
+                 aria-label="View plain language guide and details for ${med.name}">
+                <span>View Plain Guide</span>
+                <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    window.toggleTaken = function(medId) {
+      takenState = getTakenState();
+      takenState[medId] = !takenState[medId];
+      saveTakenState(takenState);
+
+      const med = MEDIBLOOM_DATA.medicines.find(m => m.id === medId);
+      const name = med ? med.name : "Medicine";
+
+      if (takenState[medId]) {
+        MedibloomApp.showToast(`Great job! Marked ${name} as taken.`, "🌟");
+      } else {
+        MedibloomApp.showToast(`Marked ${name} as not taken.`, "↩️");
+      }
+
+      renderTodayView();
+      if (document.getElementById("view-medicine").classList.contains("active")) {
+        renderMedicineGuide();
+      }
+    };
+
+    window.readMed = function(medId, btn) {
+      const med = MEDIBLOOM_DATA.medicines.find(m => m.id === medId);
+      if (!med) return;
+      const speech = `${med.name}. Scheduled for ${med.timeLabel}. Instructions: ${med.instructions}. In plain words: ${med.plainLanguageExplanation}`;
+      MedibloomApp.speakText(speech, btn);
+    };
+
+    // =========================================================================
+    // SECTION 2 LOGIC: MEDICINE DETAIL & PLAIN GUIDE
+    // =========================================================================
+    function renderMedicineGuide() {
+      takenState = getTakenState();
+      const selectorEl = document.getElementById("medicine-selector");
+      const containerEl = document.getElementById("detail-card-container");
+
+      // Populate selector dropdown
+      selectorEl.innerHTML = MEDIBLOOM_DATA.medicines.map(m => {
+        return `<option value="${m.id}" ${m.id === currentSelectedMedicineId ? 'selected' : ''}>${m.name} (${m.commonName})</option>`;
+      }).join("");
+
+      selectorEl.onchange = (e) => {
+        currentSelectedMedicineId = e.target.value;
+        renderMedicineGuide();
+      };
+
+      const med = MEDIBLOOM_DATA.medicines.find(m => m.id === currentSelectedMedicineId) || MEDIBLOOM_DATA.medicines[0];
+      const medStatus = getMedicineStatus(med, takenState);
+      const isTaken = medStatus.isTaken;
+      const isMissed = medStatus.isMissed;
+      const isSenior = med.targetGroup === "senior";
+
+      const audienceBadge = isSenior
+        ? `<span class="badge badge-senior"><span aria-hidden="true">👵</span> ${med.targetLabel}</span>`
+        : `<span class="badge badge-child"><span aria-hidden="true">🧒</span> ${med.targetLabel}</span>`;
+
+      const pillIcon = med.form.toLowerCase().includes("liquid") || med.form.toLowerCase().includes("syrup") || med.form.toLowerCase().includes("drops")
+        ? "💧"
+        : (med.form.toLowerCase().includes("chewable") ? "🦕" : "💊");
+
+      const matchedDoctor = MEDIBLOOM_DATA.doctors.find(d => med.doctorName.includes(d.name.split(",")[0])) || MEDIBLOOM_DATA.doctors[0];
+
+      containerEl.innerHTML = `
+        <div class="detail-header-flex">
+          <div>
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:12px;">
+              <span class="badge badge-time"><span aria-hidden="true">⏰</span> ${med.timeLabel}</span>
+              ${audienceBadge}
+              <span class="badge ${medStatus.badgeClass}"><span aria-hidden="true">${medStatus.icon}</span> ${medStatus.badgeText}</span>
+            </div>
+            <h1 style="font-size: var(--font-size-2xl); color: var(--teal-dark); margin-bottom: 6px;">
+              ${med.name}
+            </h1>
+            <p style="font-size: 1.35rem; font-weight: 700; color: var(--teal-primary); margin: 0;">
+              Friendly Name: “${med.commonName}”
+            </p>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="width: 70px; height: 70px; border-radius: 50%; background: var(--teal-light); border: 3px solid var(--teal-border); display:flex; align-items:center; justify-content:center; font-size: 2.2rem;" aria-hidden="true">
+              ${pillIcon}
+            </div>
+            <div>
+              <div style="font-size: 1rem; font-weight:700; color: var(--text-muted); text-transform: uppercase;">Prescribed Dose</div>
+              <div style="font-size: 1.35rem; font-weight: 800; color: var(--teal-dark);">${med.dosage}</div>
+              <div style="font-size: 1.05rem; color: var(--text-muted);">${med.form}</div>
+            </div>
+          </div>
+        </div>
+
+        ${isMissed ? `
+          <div class="med-missed-guidance" role="note" style="margin-top: 16px;">
+            <span aria-hidden="true" style="font-size: 1.25rem;">⚠️</span>
+            <span><strong>Missed Dose Guidance:</strong> Scheduled time has passed. Do not double up your next dose; follow your prescription instructions or consult Dr. Vance or your pharmacist.</span>
+          </div>
+        ` : ''}
+
+        <div class="plain-language-box" role="region" aria-label="Plain language explanation">
+          <div style="display:flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap;">
+            <h2 class="plain-language-title">
+              <span aria-hidden="true">💬</span>
+              <span>In Plain Words — What this medicine does:</span>
+            </h2>
+            <button type="button" 
+                    class="btn-icon-audio" 
+                    id="listen-detail-btn"
+                    aria-label="Listen aloud to the plain language explanation" 
+                    aria-pressed="false">
+              🔊 <span>Listen Aloud</span>
+            </button>
+          </div>
+          <p class="plain-language-body" id="plain-text-body">
+            ${med.plainLanguageExplanation}
+          </p>
+        </div>
+
+        <div class="checklist-container">
+          <h2 class="checklist-title">
+            <span aria-hidden="true">📝</span>
+            <span>How to take this dose safely:</span>
+          </h2>
+          <ol class="checklist-list">
+            ${med.howToTake.map((step, idx) => `
+              <li class="checklist-item">
+                <span class="checklist-num" aria-hidden="true">${idx + 1}</span>
+                <span>${step}</span>
+              </li>
+            `).join("")}
+          </ol>
+        </div>
+
+        <div class="info-callouts-grid">
+          <div class="callout-card callout-tips">
+            <h4>
+              <span aria-hidden="true">💡</span>
+              <span>Gentle Everyday Tips</span>
+            </h4>
+            <p style="font-size: 1.15rem; line-height: 1.6; margin-bottom: 12px;">${med.friendlyTips}</p>
+            <div style="font-size: 1.05rem; font-weight: 700; border-top: 1px solid var(--amber-border); padding-top: 8px;">
+              ⚠️ <strong>Important Note:</strong> ${med.warnings}
+            </div>
+          </div>
+
+          <div class="callout-card callout-doctor">
+            <h4>
+              <span aria-hidden="true">👨‍⚕️</span>
+              <span>Prescription Details</span>
+            </h4>
+            <p style="font-size: 1.15rem; margin-bottom: 8px;">
+              <strong>Doctor:</strong> ${med.doctorName}
+            </p>
+            <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 14px;">
+              Pills remaining in bottle: <strong>${med.pillsLeft}</strong> (Next refill: ${med.refillDate})
+            </p>
+            <button type="button" 
+               class="btn btn-secondary" 
+               onclick="navigateTo('appointment', { docId: '${matchedDoctor.id}' })"
+               style="font-size: 1.05rem; padding: 10px 16px; min-height: 44px; display:inline-flex;">
+              📅 Book follow-up with this doctor &rarr;
+            </button>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between; padding-top:20px; border-top: 2px solid var(--teal-light);">
+          <button type="button" 
+                  class="btn btn-large ${isTaken ? 'btn-success' : 'btn-primary'}"
+                  id="btn-detail-toggle"
+                  aria-pressed="${isTaken ? 'true' : 'false'}">
+            <span aria-hidden="true" style="font-size:1.4rem;">${isTaken ? '✓' : '○'}</span>
+            <span>${isTaken ? 'Taken Today (Click to Undo)' : 'Mark as Taken for Today'}</span>
+          </button>
+
+          <button type="button" onclick="navigateTo('today')" class="btn btn-secondary btn-large">
+            <span>Return to Today's List</span>
+          </button>
+        </div>
+      `;
+
+      // Listen narration button
+      const listenBtn = document.getElementById("listen-detail-btn");
+      listenBtn.addEventListener("click", () => {
+        const text = `${med.name}. Friendly Name: ${med.commonName}. In plain words: ${med.plainLanguageExplanation}. How to take: ${med.howToTake.join(". ")}. Tips: ${med.friendlyTips}`;
+        MedibloomApp.speakText(text, listenBtn);
+      });
+
+      // Toggle taken button
+      const toggleBtn = document.getElementById("btn-detail-toggle");
+      toggleBtn.addEventListener("click", () => {
+        window.toggleTaken(med.id);
+      });
+    }
+
+    // =========================================================================
+    // SECTION 3 LOGIC: 3-STEP APPOINTMENT WIZARD
+    // =========================================================================
+    let wizardCurrentStep = 1;
+
+    function renderWizardDoctors() {
+      const docListContainer = document.getElementById("doctor-list");
+      docListContainer.innerHTML = MEDIBLOOM_DATA.doctors.map(doc => {
+        const isSelected = doc.id === wizardSelectedDoctorId;
+        return `
+          <div class="doc-select-card ${isSelected ? 'selected' : ''}" 
+               role="radio" 
+               tabindex="0"
+               aria-checked="${isSelected ? 'true' : 'false'}"
+               data-docid="${doc.id}"
+               onclick="selectWizardDoctor('${doc.id}')"
+               onkeydown="if(event.key === ' ' || event.key === 'Enter') { selectWizardDoctor('${doc.id}'); event.preventDefault(); }">
+            <div>
+              <div class="doc-card-top">
+                <div class="doc-avatar" style="background-color: ${doc.avatarBg}">
+                  ${doc.avatarInitials}
+                </div>
+                <div>
+                  <h3 class="doc-name">${doc.name}</h3>
+                  <div class="doc-specialty">${doc.specialty}</div>
+                  <span class="doc-audience-badge">${doc.audience}</span>
+                </div>
+              </div>
+              <p class="doc-bio">${doc.bio}</p>
+            </div>
+            <div class="doc-card-footer">
+              <span>📍 ${doc.clinic}</span>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    window.selectWizardDoctor = function(docId) {
+      wizardSelectedDoctorId = docId;
+      renderWizardDoctors();
+    };
+
+    function goToWizardStep(step) {
+      const errorBanner = document.getElementById("wizard-error-banner");
+      errorBanner.style.display = "none";
+      errorBanner.textContent = "";
+
+      wizardCurrentStep = step;
+
+      const p1 = document.getElementById("step-panel-1");
+      const p2 = document.getElementById("step-panel-2");
+      const p3 = document.getElementById("step-panel-3");
+      const ind1 = document.getElementById("indicator-step-1");
+      const ind2 = document.getElementById("indicator-step-2");
+      const ind3 = document.getElementById("indicator-step-3");
+
+      p1.classList.remove("current");
+      p2.classList.remove("current");
+      p3.classList.remove("current");
+
+      ind1.classList.remove("active", "completed");
+      ind2.classList.remove("active", "completed");
+      ind3.classList.remove("active", "completed");
+
+      if (step === 1) {
+        p1.classList.add("current");
+        ind1.classList.add("active");
+        ind1.setAttribute("aria-current", "step");
+        ind2.removeAttribute("aria-current");
+        ind3.removeAttribute("aria-current");
+      } else if (step === 2) {
+        p2.classList.add("current");
+        ind1.classList.add("completed");
+        ind2.classList.add("active");
+        ind1.removeAttribute("aria-current");
+        ind2.setAttribute("aria-current", "step");
+        ind3.removeAttribute("aria-current");
+        renderWizardStep2();
+      } else if (step === 3) {
+        p3.classList.add("current");
+        ind1.classList.add("completed");
+        ind2.classList.add("completed");
+        ind3.classList.add("active");
+        ind1.removeAttribute("aria-current");
+        ind2.removeAttribute("aria-current");
+        ind3.setAttribute("aria-current", "step");
+        renderWizardStep3();
+      }
+      window.scrollTo({ top: 120, behavior: "smooth" });
+    }
+
+    function renderWizardStep2() {
+      const doc = MEDIBLOOM_DATA.doctors.find(d => d.id === wizardSelectedDoctorId) || MEDIBLOOM_DATA.doctors[0];
+      const recapEl = document.getElementById("step-2-doc-recap");
+      recapEl.innerHTML = `
+        <div class="doc-avatar" style="background-color: ${doc.avatarBg}; width:48px; height:48px; font-size:1.1rem;">
+          ${doc.avatarInitials}
+        </div>
+        <div>
+          <strong>Booking with:</strong> ${doc.name} — <em>${doc.specialty}</em>
+          <div style="font-size: 1.05rem; color: var(--text-muted);">Clinic: ${doc.clinic}</div>
+        </div>
+      `;
+
+      if (!wizardSelectedSlot && doc.timeSlots.length > 0) {
+        wizardSelectedSlot = doc.timeSlots[0];
+      }
+
+      const slotsContainer = document.getElementById("slots-container");
+      slotsContainer.innerHTML = doc.timeSlots.map(slot => {
+        const isSel = slot === wizardSelectedSlot;
+        return `
+          <button type="button" 
+                  class="slot-btn ${isSel ? 'selected' : ''}" 
+                  role="radio"
+                  aria-checked="${isSel ? 'true' : 'false'}"
+                  onclick="selectWizardSlot('${slot}')">
+            ${slot}
+          </button>
+        `;
+      }).join("");
+    }
+
+    window.selectWizardSlot = function(slot) {
+      wizardSelectedSlot = slot;
+      renderWizardStep2();
+    };
+
+    window.setPresetDate = function(daysAhead) {
+      const d = new Date();
+      d.setDate(d.getDate() + daysAhead);
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      const str = `${y}-${m}-${day}`;
+      const dateInput = document.getElementById("appointment-date");
+      dateInput.value = str;
+      wizardSelectedDate = str;
+      MedibloomApp.showToast(`Selected date: ${d.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })}`, "📅");
+    };
+
+    function renderWizardStep3() {
+      const doc = MEDIBLOOM_DATA.doctors.find(d => d.id === wizardSelectedDoctorId) || MEDIBLOOM_DATA.doctors[0];
+      document.getElementById("summary-doc").textContent = `${doc.name} (${doc.specialty})`;
+      document.getElementById("summary-clinic").textContent = doc.clinic;
+
+      if (wizardSelectedDate && wizardSelectedDate.includes("-")) {
+        const [yr, mo, da] = wizardSelectedDate.split("-");
+        const dateObj = new Date(yr, mo - 1, da);
+        document.getElementById("summary-date").textContent = dateObj.toLocaleDateString(undefined, {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+      } else {
+        document.getElementById("summary-date").textContent = wizardSelectedDate || "Tomorrow";
+      }
+
+      document.getElementById("summary-time").textContent = wizardSelectedSlot || "Morning Slot";
+
+      // Synchronize doctor specialization with age group, reason, and patient demo name
+      const ageSelect = document.getElementById("patient-age-group");
+      const reasonSelect = document.getElementById("visit-reason");
+      const nameInput = document.getElementById("patient-name");
+      const phoneInput = document.getElementById("patient-phone");
+
+      if (doc.specialty.includes("Pediatrics") || doc.audience.includes("Children")) {
+        if (!ageSelect.dataset.userModified) ageSelect.value = "Child (4-12)";
+        if (!reasonSelect.dataset.userModified) reasonSelect.value = "Pediatric Cough / Ear / Fever";
+        if (!nameInput.value) nameInput.value = "Leo Chen";
+        if (!phoneInput.value) phoneInput.value = "(555) 456-1122";
+      } else if (doc.specialty.includes("Joints") || doc.specialty.includes("Mobility")) {
+        if (!ageSelect.dataset.userModified) ageSelect.value = "Senior (55+)";
+        if (!reasonSelect.dataset.userModified) reasonSelect.value = "Joint Pain / Mobility Check";
+        if (!nameInput.value) nameInput.value = "Margaret Chen";
+        if (!phoneInput.value) phoneInput.value = "(555) 321-8899";
+      } else {
+        // Dr. Vance (Cardiology / Senior Care) or Dr. Morales
+        if (!ageSelect.dataset.userModified) ageSelect.value = "Senior (55+)";
+        if (!reasonSelect.dataset.userModified) reasonSelect.value = "Blood Pressure & Heart Review";
+        if (!nameInput.value) nameInput.value = "Margaret Chen";
+        if (!phoneInput.value) phoneInput.value = "(555) 321-8899";
+      }
+    }
+
+    // =========================================================================
+    // SECTION 4 LOGIC: APPOINTMENT CONFIRMATION RECEIPT
+    // =========================================================================
+    function renderConfirmationReceipt() {
+      let appointment = null;
+      try {
+        const raw = localStorage.getItem(STORAGE_KEYS.PENDING_APPOINTMENT);
+        if (raw) appointment = JSON.parse(raw);
+      } catch (e) {
+        console.warn("Could not read appointment from storage:", e);
+      }
+
+      if (!appointment) {
+        const doc = MEDIBLOOM_DATA.doctors[0];
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const yyyy = tomorrow.getFullYear();
+        const mm = String(tomorrow.getMonth() + 1).padStart(2, "0");
+        const dd = String(tomorrow.getDate()).padStart(2, "0");
+
+        appointment = {
+          id: "sample-apt-01",
+          doctorName: doc.name,
+          doctorSpecialty: doc.specialty,
+          clinic: doc.clinic,
+          date: `${yyyy}-${mm}-${dd}`,
+          timeSlot: "10:30 AM",
+          patientName: "Margaret Chen",
+          ageGroup: "Senior (55+)",
+          phone: "(555) 321-8899",
+          reason: "Blood Pressure & Heart Review",
+          specialNotes: "Wheelchair assistance requested at clinic entrance."
+        };
+      }
+
+      let formattedDate = appointment.date;
+      if (appointment.date && appointment.date.includes("-")) {
+        const parts = appointment.date.split("-");
+        const dObj = new Date(parts[0], parts[1] - 1, parts[2]);
+        formattedDate = dObj.toLocaleDateString(undefined, {
+          weekday: 'long',
+          month: 'long',
+          day: 'numeric',
+          year: 'numeric'
+        });
+      }
+
+      const ticketGrid = document.getElementById("ticket-grid");
+      ticketGrid.innerHTML = `
+        <div class="ticket-item">
+          <strong>Doctor:</strong>
+          <span>${appointment.doctorName}</span>
+          <div style="font-size: 1.05rem; color: var(--text-muted);">${appointment.doctorSpecialty}</div>
+        </div>
+
+        <div class="ticket-item">
+          <strong>Date &amp; Time:</strong>
+          <span>${formattedDate}</span>
+          <div style="font-size: 1.15rem; color: var(--teal-primary); font-weight: 800;">${appointment.timeSlot}</div>
+        </div>
+
+        <div class="ticket-item">
+          <strong>Patient Name:</strong>
+          <span>${appointment.patientName}</span>
+          <div style="font-size: 1.05rem; color: var(--text-muted);">${appointment.ageGroup}</div>
+        </div>
+
+        <div class="ticket-item">
+          <strong>Clinic Location:</strong>
+          <span>${appointment.clinic}</span>
+        </div>
+
+        <div class="ticket-item" style="grid-column: 1 / -1; border-top: 1px solid var(--teal-border); padding-top: 10px;">
+          <strong>Reason for Visit:</strong>
+          <span>${appointment.reason}</span>
+        </div>
+
+        ${appointment.specialNotes && appointment.specialNotes !== "None" ? `
+          <div class="ticket-item" style="grid-column: 1 / -1;">
+            <strong>Special Comfort / Accessibility Requests:</strong>
+            <span style="font-style: italic;">${appointment.specialNotes}</span>
+          </div>
+        ` : ''}
+
+        <div class="ticket-item" style="grid-column: 1 / -1; background: var(--teal-light); padding: 10px 14px; border-radius: var(--radius-sm);">
+          <strong>📱 SMS Reminder:</strong>
+          <span>A confirmation reminder has been scheduled for ${appointment.phone}.</span>
+        </div>
+      `;
+
+      const msgText = document.getElementById("confirm-message-text");
+      msgText.textContent = `Appointment confirmed for ${appointment.patientName} with ${appointment.doctorName}. We've saved your booking to your Medibloom record!`;
+    }
+
+    // =========================================================================
+    // INITIALIZATION & EVENT LISTENERS
+    // =========================================================================
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Current Date Banner
+      const dateEl = document.getElementById("current-date-display");
+      if (dateEl) {
+        const today = new Date();
+        const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+        dateEl.innerHTML = `<span aria-hidden="true">📅</span> <span>${today.toLocaleDateString(undefined, options)}</span>`;
+      }
+
+      // 2. Initialize Appointment Date Picker (default tomorrow)
+      const dateInput = document.getElementById("appointment-date");
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const yyyy = tomorrow.getFullYear();
+      const mm = String(tomorrow.getMonth() + 1).padStart(2, "0");
+      const dd = String(tomorrow.getDate()).padStart(2, "0");
+      const minDateStr = `${yyyy}-${mm}-${dd}`;
+      dateInput.min = minDateStr;
+      dateInput.value = minDateStr;
+      wizardSelectedDate = minDateStr;
+
+      dateInput.addEventListener("change", (e) => {
+        wizardSelectedDate = e.target.value;
+      });
+
+      // 3. Filter Tabs setup for Today Screen
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      filterBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach(b => {
+            b.classList.remove("active");
+            b.setAttribute("aria-selected", "false");
+          });
+          btn.classList.add("active");
+          btn.setAttribute("aria-selected", "true");
+          currentFilter = btn.getAttribute("data-filter");
+          setActiveProfile(currentFilter);
+          renderTodayView();
+        });
+      });
+
+      // 4. Wizard Step Navigation buttons
+      const errorBanner = document.getElementById("wizard-error-banner");
+      function showWizardError(msg) {
+        errorBanner.textContent = msg;
+        errorBanner.style.display = "block";
+        errorBanner.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+
+      document.getElementById("btn-next-step-1").addEventListener("click", () => {
+        if (!wizardSelectedDoctorId) {
+          showWizardError("Please click to choose a doctor before continuing.");
+          return;
+        }
+        goToWizardStep(2);
+      });
+
+      document.getElementById("btn-back-to-1").addEventListener("click", () => {
+        goToWizardStep(1);
+      });
+
+      document.getElementById("btn-next-step-2").addEventListener("click", () => {
+        if (!wizardSelectedDate) {
+          showWizardError("Please pick an appointment date.");
+          return;
+        }
+        if (!wizardSelectedSlot) {
+          showWizardError("Please choose one of the available time slots.");
+          return;
+        }
+        goToWizardStep(3);
+      });
+
+      document.getElementById("btn-back-to-2").addEventListener("click", () => {
+        goToWizardStep(2);
+      });
+
+      // Form inputs & inline error elements
+      const nameInput = document.getElementById("patient-name");
+      const phoneInput = document.getElementById("patient-phone");
+      const nameError = document.getElementById("patient-name-error");
+      const phoneError = document.getElementById("patient-phone-error");
+      const ageSelect = document.getElementById("patient-age-group");
+      const reasonSelect = document.getElementById("visit-reason");
+      const notesInput = document.getElementById("special-notes");
+
+      // Clear error as user types/corrects the fields
+      nameInput.addEventListener("input", () => {
+        if (nameInput.value.trim().length > 0) {
+          nameInput.classList.remove("input-error");
+          nameError.classList.remove("visible");
+          if (!document.querySelector(".input-error")) {
+            errorBanner.style.display = "none";
+          }
+        }
+      });
+
+      phoneInput.addEventListener("input", () => {
+        const digits = phoneInput.value.replace(/\D/g, "");
+        if (digits.length >= 10) {
+          phoneInput.classList.remove("input-error");
+          phoneError.classList.remove("visible");
+          if (!document.querySelector(".input-error")) {
+            errorBanner.style.display = "none";
+          }
+        }
+      });
+
+      ageSelect.addEventListener("change", () => {
+        ageSelect.dataset.userModified = "true";
+      });
+      reasonSelect.addEventListener("change", () => {
+        reasonSelect.dataset.userModified = "true";
+      });
+
+      // Submit Appointment
+      document.getElementById("btn-submit-booking").addEventListener("click", () => {
+        const patientName = nameInput.value.trim();
+        const patientPhone = phoneInput.value.trim();
+        const phoneDigits = patientPhone.replace(/\D/g, "");
+
+        let hasError = false;
+
+        // Validate Patient Name
+        if (!patientName) {
+          nameInput.classList.add("input-error");
+          nameError.textContent = "Patient full name is required.";
+          nameError.classList.add("visible");
+          hasError = true;
+        } else {
+          nameInput.classList.remove("input-error");
+          nameError.classList.remove("visible");
+        }
+
+        // Validate Phone Number
+        if (!patientPhone) {
+          phoneInput.classList.add("input-error");
+          phoneError.textContent = "Phone number is required.";
+          phoneError.classList.add("visible");
+          hasError = true;
+        } else if (phoneDigits.length < 10) {
+          phoneInput.classList.add("input-error");
+          phoneError.textContent = "Please enter a valid phone number with area code (at least 10 digits).";
+          phoneError.classList.add("visible");
+          hasError = true;
+        } else {
+          phoneInput.classList.remove("input-error");
+          phoneError.classList.remove("visible");
+        }
+
+        if (hasError) {
+          showWizardError("Please correct the highlighted fields before completing your booking.");
+          if (!patientName) {
+            nameInput.focus();
+          } else {
+            phoneInput.focus();
+          }
+          return; // Prevents invalid forms from showing confirmation!
+        }
+
+        const doc = MEDIBLOOM_DATA.doctors.find(d => d.id === wizardSelectedDoctorId) || MEDIBLOOM_DATA.doctors[0];
+
+        const appointmentData = {
+          id: "apt-" + Date.now(),
+          doctorName: doc.name,
+          doctorSpecialty: doc.specialty,
+          clinic: doc.clinic,
+          date: wizardSelectedDate,
+          timeSlot: wizardSelectedSlot,
+          patientName: patientName,
+          ageGroup: ageSelect.value,
+          phone: patientPhone,
+          reason: reasonSelect.value,
+          specialNotes: notesInput.value.trim() || "None",
+          bookedAt: new Date().toISOString()
+        };
+
+        try {
+          localStorage.setItem(STORAGE_KEYS.PENDING_APPOINTMENT, JSON.stringify(appointmentData));
+          const listRaw = localStorage.getItem(STORAGE_KEYS.BOOKED_APPOINTMENTS);
+          const list = listRaw ? JSON.parse(listRaw) : [];
+          list.push(appointmentData);
+          localStorage.setItem(STORAGE_KEYS.BOOKED_APPOINTMENTS, JSON.stringify(list));
+        } catch (e) {
+          console.error("Storage error:", e);
+        }
+
+        // Navigate to confirmation view!
+        window.navigateTo("confirmation");
+      });
+
+      // 5. Navigation Bar click handlers
+      document.getElementById("nav-today").addEventListener("click", (e) => {
+        e.preventDefault();
+        window.navigateTo("today");
+      });
+      document.getElementById("nav-medicine").addEventListener("click", (e) => {
+        e.preventDefault();
+        window.navigateTo("medicine");
+      });
+      document.getElementById("nav-appointment").addEventListener("click", (e) => {
+        e.preventDefault();
+        window.navigateTo("appointment");
+      });
+
+      // 6. Initialize Dark Mode Manager
+      DarkModeManager.init();
+
+      // 7. Support Browser back/forward button
+      window.addEventListener("popstate", parseRouteFromHash);
+      window.addEventListener("hashchange", parseRouteFromHash);
+
+      // Initial route load
+      parseRouteFromHash();
+    });
+  </script>
+</body>
+</html>

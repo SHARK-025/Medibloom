@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medibloom — Medicine Detail &amp; Plain-Language Guide</title>
+  <meta name="description" content="Plain-language medicine guide for adults 55+ and children. Clear dosages, simple instructions, and friendly advice.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='30' fill='%23E6F4F2'/><path d='M16 38 C 22 36, 26 28, 32 20 C 35 16, 41 14, 46 16 C 49 17, 52 20, 50 23 C 48 25, 43 27, 39 28 C 45 28, 52 32, 53 36 C 48 37, 42 36, 36 34 C 33 37, 28 42, 22 44 Z' fill='%23006B67'/></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Accessible Skip Navigation Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Top Accessibility Quick Bar -->
+  <aside class="top-bar-assist" aria-label="Accessibility options">
+    <div class="assist-group">
+      <span>👁️ Text Size:</span>
+      <div class="font-size-btns" role="group" aria-label="Adjust font size">
+        <button type="button" class="btn-font-size" data-size="normal" aria-pressed="true" aria-label="Standard text size">A</button>
+        <button type="button" class="btn-font-size" data-size="large" aria-pressed="false" aria-label="Large text size">A+</button>
+        <button type="button" class="btn-font-size" data-size="xlarge" aria-pressed="false" aria-label="Extra large text size">A++</button>
+      </div>
+    </div>
+    <div class="assist-group">
+      <span aria-hidden="true">🕊️</span>
+      <span>High Contrast • Senior &amp; Child Friendly</span>
+    </div>
+  </aside>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="header-container">
+      <a href="index.html" class="brand-wrapper" aria-label="Medibloom Home">
+        <svg class="brand-logo-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="#E6F4F2" stroke="#006B67" stroke-width="2.5" />
+          <path d="M16 38 C 22 36, 26 28, 32 20 C 35 16, 41 14, 46 16 C 49 17, 52 20, 50 23 C 48 25, 43 27, 39 28 C 45 28, 52 32, 53 36 C 48 37, 42 36, 36 34 C 33 37, 28 42, 22 44 Z" fill="#006B67" />
+          <path d="M29 23 C 33 13, 41 9, 44 11 C 41 16, 36 21, 31 24 Z" fill="#064542" />
+          <path d="M47 38 C 50 40, 51 44, 48 46 C 45 48, 42 46, 41 43 C 44 42, 45 40, 47 38 Z" fill="#10B981" />
+          <circle cx="46" cy="18" r="1.5" fill="#FFFFFF" />
+        </svg>
+        <div class="brand-text-group">
+          <span class="brand-title">Medibloom</span>
+          <span class="brand-tagline">Health That Grows Daily</span>
+        </div>
+      </a>
+
+      <!-- Main Navigation -->
+      <nav class="site-nav" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          Today
+        </a>
+        <a href="medicine.html" class="nav-link active" aria-current="page">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path>
+            <path d="m8.5 8.5 7 7"></path>
+          </svg>
+          Medicine Guide
+        </a>
+        <a href="appointment.html" class="nav-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M19 8v6"></path>
+            <path d="M22 11h-6"></path>
+          </svg>
+          Book Appointment
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main id="main-content" class="main-wrapper" role="main">
+    
+    <!-- Top Action Bar: Back to Today & Medicine Switcher -->
+    <div class="detail-top-nav">
+      <a href="index.html" class="btn btn-secondary" aria-label="Go back to Today's Medicine Schedule">
+        <span aria-hidden="true">&larr;</span>
+        <span>Back to Today</span>
+      </a>
+
+      <div class="med-picker-row">
+        <label for="medicine-selector" style="font-weight: 700; color: var(--teal-dark);">Select Medicine:</label>
+        <select id="medicine-selector" class="picker-select" aria-label="Choose a medicine to inspect in plain language">
+          <!-- Populated by JavaScript -->
+        </select>
+      </div>
+    </div>
+
+    <!-- Medicine Detail Card -->
+    <article class="detail-hero-card" id="detail-card-container" aria-live="polite">
+      <!-- Injected by JavaScript -->
+    </article>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <svg class="brand-logo-svg" style="width:36px; height:36px;" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="#E6F4F2" stroke="#006B67" stroke-width="2.5" />
+          <path d="M16 38 C 22 36, 26 28, 32 20 C 35 16, 41 14, 46 16 C 49 17, 52 20, 50 23 C 48 25, 43 27, 39 28 C 45 28, 52 32, 53 36 C 48 37, 42 36, 36 34 C 33 37, 28 42, 22 44 Z" fill="#006B67" />
+          <path d="M29 23 C 33 13, 41 9, 44 11 C 41 16, 36 21, 31 24 Z" fill="#064542" />
+        </svg>
+        <span>Medibloom</span>
+      </div>
+      <div class="footer-tagline">“Health That Grows Daily”</div>
+      <div class="footer-copy">Designed with high contrast &amp; large text for seniors, children, and caring families.</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    /**
+     * Medicine Detail Page Logic:
+     * - Parse ?id= query param or default to first medicine.
+     * - Populate medicine switcher select element.
+     * - Render high-contrast plain-language hero section.
+     * - Allow marking as taken right from here with localStorage sync.
+     * - Provide audio narration button.
+     */
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      let selectedId = urlParams.get("id") || MEDIBLOOM_DATA.medicines[0].id;
+      let takenState = getTakenState();
+
+      const selectorEl = document.getElementById("medicine-selector");
+      const containerEl = document.getElementById("detail-card-container");
+
+      // Populate dropdown
+      selectorEl.innerHTML = MEDIBLOOM_DATA.medicines.map(m => {
+        return `<option value="${m.id}" ${m.id === selectedId ? 'selected' : ''}>${m.name} (${m.commonName})</option>`;
+      }).join("");
+
+      selectorEl.addEventListener("change", (e) => {
+        selectedId = e.target.value;
+        const newUrl = new URL(window.location);
+        newUrl.searchParams.set("id", selectedId);
+        window.history.pushState({}, "", newUrl);
+        renderDetail();
+      });
+
+      function renderDetail() {
+        const med = MEDIBLOOM_DATA.medicines.find(m => m.id === selectedId) || MEDIBLOOM_DATA.medicines[0];
+        const isTaken = takenState[med.id] === true;
+        const isSenior = med.targetGroup === "senior";
+
+        const audienceBadge = isSenior
+          ? `<span class="badge badge-senior"><span aria-hidden="true">👵</span> ${med.targetLabel}</span>`
+          : `<span class="badge badge-child"><span aria-hidden="true">🧒</span> ${med.targetLabel}</span>`;
+
+        const pillIcon = med.form.toLowerCase().includes("liquid") || med.form.toLowerCase().includes("syrup") || med.form.toLowerCase().includes("drops")
+          ? "💧"
+          : (med.form.toLowerCase().includes("chewable") ? "🦕" : "💊");
+
+        // Find associated doctor to link appointment
+        const matchedDoctor = MEDIBLOOM_DATA.doctors.find(d => med.doctorName.includes(d.name.split(",")[0])) || MEDIBLOOM_DATA.doctors[0];
+
+        containerEl.innerHTML = `
+          <!-- Header Flex -->
+          <div class="detail-header-flex">
+            <div>
+              <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:12px;">
+                <span class="badge badge-time"><span aria-hidden="true">⏰</span> ${med.timeLabel}</span>
+                ${audienceBadge}
+                ${isTaken ? `<span class="badge badge-taken"><span aria-hidden="true">✓</span> Taken Today</span>` : ''}
+              </div>
+              <h1 style="font-size: var(--font-size-2xl); color: var(--teal-dark); margin-bottom: 6px;">
+                ${med.name}
+              </h1>
+              <p style="font-size: 1.35rem; font-weight: 700; color: var(--teal-primary); margin: 0;">
+                Friendly Name: “${med.commonName}”
+              </p>
+            </div>
+
+            <!-- Visual Icon & Dosage -->
+            <div style="display:flex; align-items:center; gap:16px;">
+              <div style="width: 70px; height: 70px; border-radius: 50%; background: var(--teal-light); border: 3px solid var(--teal-border); display:flex; align-items:center; justify-content:center; font-size: 2.2rem;" aria-hidden="true">
+                ${pillIcon}
+              </div>
+              <div>
+                <div style="font-size: 1rem; font-weight:700; color: var(--text-muted); text-transform: uppercase;">Prescribed Dose</div>
+                <div style="font-size: 1.35rem; font-weight: 800; color: var(--teal-dark);">${med.dosage}</div>
+                <div style="font-size: 1.05rem; color: var(--text-muted);">${med.form}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Highlight: Plain-Language Explanation (Accessible for All Ages) -->
+          <div class="plain-language-box" role="region" aria-label="Plain language explanation">
+            <div style="display:flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap;">
+              <h2 class="plain-language-title">
+                <span aria-hidden="true">💬</span>
+                <span>In Plain Words — What this medicine does:</span>
+              </h2>
+              <button type="button" 
+                      class="btn-icon-audio" 
+                      id="listen-detail-btn"
+                      aria-label="Listen aloud to the plain language explanation" 
+                      aria-pressed="false">
+                🔊 <span>Listen Aloud</span>
+              </button>
+            </div>
+            <p class="plain-language-body" id="plain-text-body">
+              ${med.plainLanguageExplanation}
+            </p>
+          </div>
+
+          <!-- How to Take Step-by-Step Checklist -->
+          <div class="checklist-container">
+            <h2 class="checklist-title">
+              <span aria-hidden="true">📝</span>
+              <span>How to take this dose safely:</span>
+            </h2>
+            <ol class="checklist-list">
+              ${med.howToTake.map((step, idx) => `
+                <li class="checklist-item">
+                  <span class="checklist-num" aria-hidden="true">${idx + 1}</span>
+                  <span>${step}</span>
+                </li>
+              `).join("")}
+            </ol>
+          </div>
+
+          <!-- Two Info Callout Cards: Helpful Reminders & Doctor Info -->
+          <div class="info-callouts-grid">
+            <div class="callout-card callout-tips">
+              <h4>
+                <span aria-hidden="true">💡</span>
+                <span>Gentle Everyday Tips</span>
+              </h4>
+              <p style="font-size: 1.15rem; line-height: 1.6; margin-bottom: 12px;">${med.friendlyTips}</p>
+              <div style="font-size: 1.05rem; font-weight: 700; border-top: 1px solid var(--amber-border); padding-top: 8px;">
+                ⚠️ <strong>Important Note:</strong> ${med.warnings}
+              </div>
+            </div>
+
+            <div class="callout-card callout-doctor">
+              <h4>
+                <span aria-hidden="true">👨‍⚕️</span>
+                <span>Prescription Details</span>
+              </h4>
+              <p style="font-size: 1.15rem; margin-bottom: 8px;">
+                <strong>Doctor:</strong> ${med.doctorName}
+              </p>
+              <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 14px;">
+                Pills remaining in bottle: <strong>${med.pillsLeft}</strong> (Next refill: ${med.refillDate})
+              </p>
+              <a href="appointment.html?doctorId=${matchedDoctor.id}" 
+                 class="btn btn-secondary" 
+                 style="font-size: 1.05rem; padding: 10px 16px; min-height: 44px; display:inline-flex;">
+                📅 Book follow-up with this doctor &rarr;
+              </a>
+            </div>
+          </div>
+
+          <!-- Action Footer: Mark as Taken & Back Button -->
+          <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between; padding-top:20px; border-top: 2px solid var(--teal-light);">
+            <button type="button" 
+                    class="btn btn-large ${isTaken ? 'btn-success' : 'btn-primary'}"
+                    id="btn-detail-toggle"
+                    aria-pressed="${isTaken ? 'true' : 'false'}">
+              <span aria-hidden="true" style="font-size:1.4rem;">${isTaken ? '✓' : '○'}</span>
+              <span>${isTaken ? 'Taken Today (Click to Undo)' : 'Mark as Taken for Today'}</span>
+            </button>
+
+            <a href="index.html" class="btn btn-secondary btn-large">
+              <span>Return to Today's List</span>
+            </a>
+          </div>
+        `;
+
+        // Bind Listen Button
+        const listenBtn = document.getElementById("listen-detail-btn");
+        listenBtn.addEventListener("click", () => {
+          const text = `${med.name}. Friendly Name: ${med.commonName}. In plain words: ${med.plainLanguageExplanation}. How to take: ${med.howToTake.join(". ")}. Tips: ${med.friendlyTips}`;
+          MedibloomApp.speakText(text, listenBtn);
+        });
+
+        // Bind Mark as Taken toggle
+        const toggleBtn = document.getElementById("btn-detail-toggle");
+        toggleBtn.addEventListener("click", () => {
+          takenState[med.id] = !takenState[med.id];
+          saveTakenState(takenState);
+
+          if (takenState[med.id]) {
+            MedibloomApp.showToast(`Marked ${med.name} as taken!`, "🌟");
+          } else {
+            MedibloomApp.showToast(`Marked ${med.name} as not taken.`, "↩️");
+          }
+
+          renderDetail();
+        });
+      }
+
+      renderDetail();
+    });
+  </script>
+</body>
+</html>

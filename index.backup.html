@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medibloom — Today's Medicines & Schedule</title>
+  <meta name="description" content="Medibloom: A calm, accessible medicine and appointment companion for adults 55+ and children. Your day, one dose at a time.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='30' fill='%23E6F4F2'/><path d='M16 38 C 22 36, 26 28, 32 20 C 35 16, 41 14, 46 16 C 49 17, 52 20, 50 23 C 48 25, 43 27, 39 28 C 45 28, 52 32, 53 36 C 48 37, 42 36, 36 34 C 33 37, 28 42, 22 44 Z' fill='%23006B67'/></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Accessible Skip Navigation Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Top Accessibility Quick Bar (Font Size Adjuster for Low Vision) -->
+  <aside class="top-bar-assist" aria-label="Accessibility options">
+    <div class="assist-group">
+      <span>👁️ Text Size:</span>
+      <div class="font-size-btns" role="group" aria-label="Adjust font size">
+        <button type="button" class="btn-font-size" data-size="normal" aria-pressed="true" aria-label="Standard text size">A</button>
+        <button type="button" class="btn-font-size" data-size="large" aria-pressed="false" aria-label="Large text size">A+</button>
+        <button type="button" class="btn-font-size" data-size="xlarge" aria-pressed="false" aria-label="Extra large text size">A++</button>
+      </div>
+    </div>
+    <div class="assist-group">
+      <span aria-hidden="true">🕊️</span>
+      <span>High Contrast • Senior &amp; Child Friendly</span>
+    </div>
+  </aside>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="header-container">
+      <a href="index.html" class="brand-wrapper" aria-label="Medibloom Home">
+        <!-- Lark-bird SVG Logo -->
+        <svg class="brand-logo-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Soft Background Sun / Aura -->
+          <circle cx="32" cy="32" r="30" fill="#E6F4F2" stroke="#006B67" stroke-width="2.5" />
+          <!-- Rising Lark Bird Silhouette in Flight -->
+          <path d="M16 38 C 22 36, 26 28, 32 20 C 35 16, 41 14, 46 16 C 49 17, 52 20, 50 23 C 48 25, 43 27, 39 28 C 45 28, 52 32, 53 36 C 48 37, 42 36, 36 34 C 33 37, 28 42, 22 44 Z" fill="#006B67" />
+          <!-- Lark Wing Feathers in Bloom -->
+          <path d="M29 23 C 33 13, 41 9, 44 11 C 41 16, 36 21, 31 24 Z" fill="#064542" />
+          <!-- Gentle Sprout / Leaf of Health -->
+          <path d="M47 38 C 50 40, 51 44, 48 46 C 45 48, 42 46, 41 43 C 44 42, 45 40, 47 38 Z" fill="#10B981" />
+          <circle cx="46" cy="18" r="1.5" fill="#FFFFFF" />
+        </svg>
+        <div class="brand-text-group">
+          <span class="brand-title">Medibloom</span>
+          <span class="brand-tagline">Your day, one dose at a time.</span>
+        </div>
+      </a>
+
+      <!-- Main Navigation -->
+      <nav class="site-nav" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link" aria-current="page">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          Today
+        </a>
+        <a href="medicine.html" class="nav-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path>
+            <path d="m8.5 8.5 7 7"></path>
+          </svg>
+          Medicine Guide
+        </a>
+        <a href="appointment.html" class="nav-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M19 8v6"></path>
+            <path d="M22 11h-6"></path>
+          </svg>
+          Book Appointment
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main id="main-content" class="main-wrapper" role="main">
+    
+    <!-- Today's Hero Banner with Date & Progress Tracker -->
+    <section class="today-header-banner" aria-labelledby="today-heading">
+      <div class="date-greeting-group">
+        <div class="date-pill" id="current-date-display">
+          <span aria-hidden="true">📅</span>
+          <span>Today's Medicine Schedule</span>
+        </div>
+        <h1 id="today-heading" class="greeting-text">Good day! Stay on track.</h1>
+        <p class="subgreeting">Check off each medicine as you or your family member takes it.</p>
+      </div>
+
+      <!-- Accessible Live Progress Card -->
+      <div class="progress-container-card" role="region" aria-label="Medicine Completion Progress">
+        <div class="progress-header-info">
+          <span class="progress-title" id="progress-text-label">Today's Progress</span>
+          <span class="progress-counter" id="progress-fraction" aria-live="polite">0 of 6 taken</span>
+        </div>
+        
+        <div class="progress-bar-track" 
+             role="progressbar" 
+             id="main-progressbar"
+             aria-valuenow="0" 
+             aria-valuemin="0" 
+             aria-valuemax="100" 
+             aria-labelledby="progress-text-label">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+
+        <div class="progress-encouragement" id="progress-message" aria-live="polite">
+          <span aria-hidden="true">🌱</span>
+          <span>Let's get started with your morning dose!</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter Buttons: Senior Care / Child Care / All -->
+    <section class="filter-section" aria-label="Filter Medicines by Family Member">
+      <div class="filter-label" id="filter-heading">Showing medicines for:</div>
+      <div class="filter-pills" role="tablist" aria-labelledby="filter-heading">
+        <button type="button" 
+                class="filter-btn active" 
+                id="filter-all" 
+                role="tab" 
+                aria-selected="true" 
+                data-filter="all">
+          <span aria-hidden="true">👥</span>
+          <span>All Family Members (<span id="count-all">6</span>)</span>
+        </button>
+        <button type="button" 
+                class="filter-btn" 
+                id="filter-senior" 
+                role="tab" 
+                aria-selected="false" 
+                data-filter="senior">
+          <span aria-hidden="true">👵</span>
+          <span>Adults 55+ / Seniors (<span id="count-senior">3</span>)</span>
+        </button>
+        <button type="button" 
+                class="filter-btn" 
+                id="filter-child" 
+                role="tab" 
+                aria-selected="false" 
+                data-filter="child">
+          <span aria-hidden="true">🧒</span>
+          <span>Children &amp; Youth (<span id="count-child">3</span>)</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Medicine Cards Grid Container -->
+    <section aria-label="Today's Medicine Cards List">
+      <div class="meds-grid" id="meds-container" aria-live="polite">
+        <!-- Dynamically Rendered by JavaScript from MEDIBLOOM_DATA -->
+      </div>
+    </section>
+
+    <!-- Need Doctor / Prescription Banner -->
+    <section style="margin-top: 48px;" aria-label="Doctor appointment reminder">
+      <div class="card" style="background: linear-gradient(135deg, #f0faf9 0%, #ffffff 100%); border: 2px dashed var(--teal-primary); display: flex; flex-direction: column; gap: 16px; align-items: flex-start; justify-content: space-between;">
+        <div style="display: flex; gap: 16px; align-items: center;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--teal-light); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; border: 2px solid var(--teal-border); flex-shrink: 0;" aria-hidden="true">
+            🩺
+          </div>
+          <div>
+            <h2 style="font-size: 1.4rem; color: var(--teal-dark); margin-bottom: 4px;">Need a checkup or prescription refill?</h2>
+            <p style="color: var(--text-muted); font-size: 1.15rem; margin: 0;">Book a quiet, friendly visit with Dr. Vance or Dr. Chen in just 3 quick steps.</p>
+          </div>
+        </div>
+        <a href="appointment.html" class="btn btn-primary" style="align-self: flex-start;">
+          Schedule an Appointment &rarr;
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <svg class="brand-logo-svg" style="width:36px; height:36px;" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="#E6F4F2" stroke="#006B67" stroke-width="2.5" />
+          <path d="M16 38 C 22 36, 26 28, 32 20 C 35 16, 41 14, 46 16 C 49 17, 52 20, 50 23 C 48 25, 43 27, 39 28 C 45 28, 52 32, 53 36 C 48 37, 42 36, 36 34 C 33 37, 28 42, 22 44 Z" fill="#006B67" />
+          <path d="M29 23 C 33 13, 41 9, 44 11 C 41 16, 36 21, 31 24 Z" fill="#064542" />
+        </svg>
+        <span>Medibloom</span>
+      </div>
+      <div class="footer-tagline">“Your day, one dose at a time.”</div>
+      <div class="footer-copy">Designed with high contrast &amp; large text for seniors, children, and caring families.</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    /**
+     * Today Screen Logic:
+     * - Load medicine data and merge with localStorage taken states.
+     * - Render cards with time, audience badges, dosage, plain instructions.
+     * - Toggle 'Mark as taken' button, update progress bar, save to localStorage.
+     * - Provide text-to-speech button for seniors/kids.
+     * - Filter by senior / child / all.
+     */
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Format today's date
+      const dateEl = document.getElementById("current-date-display");
+      if (dateEl) {
+        const today = new Date();
+        const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+        dateEl.innerHTML = `<span aria-hidden="true">📅</span> <span>${today.toLocaleDateString(undefined, options)}</span>`;
+      }
+
+      // 2. State & Render
+      let currentFilter = getActiveProfile();
+      let takenState = getTakenState();
+
+      const container = document.getElementById("meds-container");
+      const progressFraction = document.getElementById("progress-fraction");
+      const progressFill = document.getElementById("progress-fill");
+      const progressMessage = document.getElementById("progress-message");
+      const progressBar = document.getElementById("main-progressbar");
+
+      // Update badge counts in filter buttons
+      const seniorCount = MEDIBLOOM_DATA.medicines.filter(m => m.targetGroup === "senior").length;
+      const childCount = MEDIBLOOM_DATA.medicines.filter(m => m.targetGroup === "child").length;
+      document.getElementById("count-all").textContent = MEDIBLOOM_DATA.medicines.length;
+      document.getElementById("count-senior").textContent = seniorCount;
+      document.getElementById("count-child").textContent = childCount;
+
+      function render() {
+        // Filter medicines
+        const filtered = MEDIBLOOM_DATA.medicines.filter(m => {
+          if (currentFilter === "senior") return m.targetGroup === "senior";
+          if (currentFilter === "child") return m.targetGroup === "child";
+          return true;
+        });
+
+        // Calculate progress for current view
+        const total = filtered.length;
+        const takenCount = filtered.filter(m => takenState[m.id] === true).length;
+        const percentage = total > 0 ? Math.round((takenCount / total) * 100) : 0;
+
+        // Update progress UI
+        progressFraction.textContent = `${takenCount} of ${total} taken (${percentage}%)`;
+        progressFill.style.width = `${percentage}%`;
+        progressBar.setAttribute("aria-valuenow", percentage);
+        progressBar.setAttribute("aria-valuetext", `${takenCount} of ${total} medicines taken, ${percentage} percent`);
+
+        if (percentage === 100 && total > 0) {
+          progressMessage.innerHTML = `<span aria-hidden="true">🌟</span> <strong style="color:var(--success-dark)">Outstanding! All doses marked taken for today!</strong>`;
+        } else if (percentage >= 50) {
+          progressMessage.innerHTML = `<span aria-hidden="true">👏</span> <span>More than halfway there! Keep it up.</span>`;
+        } else if (takenCount > 0) {
+          progressMessage.innerHTML = `<span aria-hidden="true">🌿</span> <span>Good start! Remember to take your next dose with water.</span>`;
+        } else {
+          progressMessage.innerHTML = `<span aria-hidden="true">🌱</span> <span>Let's get started with your scheduled doses!</span>`;
+        }
+
+        // Render Cards
+        if (filtered.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state" style="grid-column: 1 / -1;">
+              <h3>No medicines found for this category</h3>
+              <p>Switch back to All Family Members to see all scheduled medications.</p>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = filtered.map(med => {
+          const isTaken = takenState[med.id] === true;
+          const isSenior = med.targetGroup === "senior";
+          const audienceBadge = isSenior
+            ? `<span class="badge badge-senior"><span aria-hidden="true">👵</span> Senior (55+)</span>`
+            : `<span class="badge badge-child"><span aria-hidden="true">🧒</span> Child Care</span>`;
+
+          const pillIcon = med.form.toLowerCase().includes("liquid") || med.form.toLowerCase().includes("syrup") || med.form.toLowerCase().includes("drops")
+            ? "💧"
+            : (med.form.toLowerCase().includes("chewable") ? "🦕" : "💊");
+
+          return `
+            <article class="card med-card ${isTaken ? 'is-taken' : ''}" 
+                     id="card-${med.id}" 
+                     aria-labelledby="title-${med.id}">
+              
+              <div class="med-card-header">
+                <div class="med-badges-row">
+                  <span class="badge badge-time">
+                    <span aria-hidden="true">⏰</span> ${med.timeLabel}
+                  </span>
+                  ${audienceBadge}
+                  ${isTaken ? `<span class="badge badge-taken"><span aria-hidden="true">✓</span> Taken Today</span>` : ''}
+                </div>
+                <div class="pill-visual-circle" aria-hidden="true">
+                  ${pillIcon}
+                </div>
+              </div>
+
+              <div class="med-title-group">
+                <h2 class="med-name" id="title-${med.id}">${med.name}</h2>
+                <div class="med-common-name">${med.commonName}</div>
+              </div>
+
+              <div class="med-dosage-box">
+                <span aria-hidden="true">📏</span>
+                <span><strong>Dose:</strong> ${med.dosage} (${med.form})</span>
+              </div>
+
+              <div class="med-cue">
+                <strong>Instruction:</strong> ${med.instructions}
+              </div>
+
+              <div style="display:flex; justify-content: flex-end; margin-bottom: 12px;">
+                <button type="button" 
+                        class="btn-icon-audio" 
+                        onclick="readMed('${med.id}', this)"
+                        aria-label="Listen to plain explanation for ${med.name}" 
+                        aria-pressed="false">
+                  🔊 <span>Listen</span>
+                </button>
+              </div>
+
+              <div class="med-card-actions">
+                <button type="button" 
+                        class="btn btn-toggle-taken ${isTaken ? 'taken' : 'unmarked'}"
+                        id="btn-toggle-${med.id}"
+                        onclick="toggleTaken('${med.id}')"
+                        aria-pressed="${isTaken ? 'true' : 'false'}"
+                        aria-label="${isTaken ? 'Mark ' + med.name + ' as not taken' : 'Mark ' + med.name + ' as taken'}">
+                  <span aria-hidden="true" style="font-size: 1.3rem;">${isTaken ? '✓' : '○'}</span>
+                  <span>${isTaken ? 'Taken Today' : 'Mark as Taken'}</span>
+                </button>
+
+                <a href="medicine.html?id=${med.id}" 
+                   class="link-details" 
+                   aria-label="View plain language guide and details for ${med.name}">
+                  <span>View Plain Guide</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              </div>
+
+            </article>
+          `;
+        }).join("");
+      }
+
+      // Toggle Taken Handler
+      window.toggleTaken = function(medId) {
+        const current = takenState[medId] === true;
+        takenState[medId] = !current;
+        saveTakenState(takenState);
+
+        const med = MEDIBLOOM_DATA.medicines.find(m => m.id === medId);
+        const name = med ? med.name : "Medicine";
+
+        if (takenState[medId]) {
+          MedibloomApp.showToast(`Great job! Marked ${name} as taken.`, "🌟");
+        } else {
+          MedibloomApp.showToast(`Marked ${name} as not taken.`, "↩️");
+        }
+
+        render();
+      };
+
+      // Read Aloud Handler
+      window.readMed = function(medId, btn) {
+        const med = MEDIBLOOM_DATA.medicines.find(m => m.id === medId);
+        if (!med) return;
+        const speech = `${med.name}. ${med.commonName}. Dose is ${med.dosage}. ${med.instructions}. ${med.plainLanguageExplanation}`;
+        MedibloomApp.speakText(speech, btn);
+      };
+
+      // Filter Tabs setup
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      filterBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach(b => {
+            b.classList.remove("active");
+            b.setAttribute("aria-selected", "false");
+          });
+          btn.classList.add("active");
+          btn.setAttribute("aria-selected", "true");
+          currentFilter = btn.getAttribute("data-filter");
+          setActiveProfile(currentFilter);
+          render();
+        });
+      });
+
+      // Initial filter button active sync
+      filterBtns.forEach(b => {
+        const f = b.getAttribute("data-filter");
+        if (f === currentFilter) {
+          b.classList.add("active");
+          b.setAttribute("aria-selected", "true");
+        } else {
+          b.classList.remove("active");
+          b.setAttribute("aria-selected", "false");
+        }
+      });
+
+      render();
+    });
+  </script>
+</body>
+</html>

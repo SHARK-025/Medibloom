@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medibloom — Appointment Confirmed</title>
+  <meta name="description" content="Your doctor visit is confirmed with Medibloom. Here are your appointment details and helpful visit tips.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='30' fill='%23E6F4F2'/><path d='M16 38 C 22 36, 26 28, 32 20 C 35 16, 41 14, 46 16 C 49 17, 52 20, 50 23 C 48 25, 43 27, 39 28 C 45 28, 52 32, 53 36 C 48 37, 42 36, 36 34 C 33 37, 28 42, 22 44 Z' fill='%23006B67'/></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Accessible Skip Navigation Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Top Accessibility Quick Bar -->
+  <aside class="top-bar-assist" aria-label="Accessibility options">
+    <div class="assist-group">
+      <span>👁️ Text Size:</span>
+      <div class="font-size-btns" role="group" aria-label="Adjust font size">
+        <button type="button" class="btn-font-size" data-size="normal" aria-pressed="true" aria-label="Standard text size">A</button>
+        <button type="button" class="btn-font-size" data-size="large" aria-pressed="false" aria-label="Large text size">A+</button>
+        <button type="button" class="btn-font-size" data-size="xlarge" aria-pressed="false" aria-label="Extra large text size">A++</button>
+      </div>
+    </div>
+    <div class="assist-group">
+      <span aria-hidden="true">🕊️</span>
+      <span>High Contrast • Senior &amp; Child Friendly</span>
+    </div>
+  </aside>
+
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="header-container">
+      <a href="index.html" class="brand-wrapper" aria-label="Medibloom Home">
+        <svg class="brand-logo-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="#E6F4F2" stroke="#006B67" stroke-width="2.5" />
+          <path d="M16 38 C 22 36, 26 28, 32 20 C 35 16, 41 14, 46 16 C 49 17, 52 20, 50 23 C 48 25, 43 27, 39 28 C 45 28, 52 32, 53 36 C 48 37, 42 36, 36 34 C 33 37, 28 42, 22 44 Z" fill="#006B67" />
+          <path d="M29 23 C 33 13, 41 9, 44 11 C 41 16, 36 21, 31 24 Z" fill="#064542" />
+          <path d="M47 38 C 50 40, 51 44, 48 46 C 45 48, 42 46, 41 43 C 44 42, 45 40, 47 38 Z" fill="#10B981" />
+          <circle cx="46" cy="18" r="1.5" fill="#FFFFFF" />
+        </svg>
+        <div class="brand-text-group">
+          <span class="brand-title">Medibloom</span>
+          <span class="brand-tagline">Health That Grows Daily</span>
+        </div>
+      </a>
+
+      <!-- Main Navigation -->
+      <nav class="site-nav" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          Today
+        </a>
+        <a href="medicine.html" class="nav-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path>
+            <path d="m8.5 8.5 7 7"></path>
+          </svg>
+          Medicine Guide
+        </a>
+        <a href="appointment.html" class="nav-link">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M19 8v6"></path>
+            <path d="M22 11h-6"></path>
+          </svg>
+          Book Appointment
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main id="main-content" class="main-wrapper" role="main">
+    <div class="confirm-wrapper">
+      
+      <article class="confirm-card" role="region" aria-label="Appointment Confirmation Receipt">
+        
+        <!-- Friendly Checkmark Badge -->
+        <div class="confirm-icon-circle" aria-hidden="true">
+          ✓
+        </div>
+
+        <h1 class="confirm-title" id="confirmation-heading">You're All Set!</h1>
+        <p class="confirm-subtitle" id="confirm-message-text">
+          Your doctor appointment has been successfully scheduled. We look forward to seeing you!
+        </p>
+
+        <!-- Printable Appointment Ticket -->
+        <div class="appointment-ticket" id="appointment-ticket-box">
+          <div class="ticket-header">
+            <span>📋 Appointment Summary</span>
+            <span style="font-size: 0.95rem; background: var(--teal-primary); color: #ffffff; padding: 4px 10px; border-radius: var(--radius-pill);">
+              Confirmed
+            </span>
+          </div>
+
+          <div class="ticket-details-grid" id="ticket-grid">
+            <!-- Populated by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Helpful Reminders for the Visit -->
+        <div class="confirm-helpful-notes">
+          <h3>
+            <span aria-hidden="true">🌱</span>
+            <span>Helpful Reminders for Visit Day</span>
+          </h3>
+          <ul style="padding-left: 24px; font-size: 1.15rem; line-height: 1.6;">
+            <li>Bring your current medicine bottles or your Medibloom app list so your doctor can review them.</li>
+            <li>Arrive 10 minutes early so you have plenty of time to sit down and relax before your checkup.</li>
+            <li>If you have hearing aids or reading glasses, remember to bring them along!</li>
+            <li>Parents: feel free to bring your child’s favorite toy or picture book to make the wait extra cozy.</li>
+          </ul>
+        </div>
+
+        <!-- Action Buttons (Button back to Today screen required) -->
+        <div class="confirm-actions">
+          <a href="index.html" class="btn btn-primary btn-large" id="btn-back-to-today">
+            <span aria-hidden="true">🏠</span>
+            <span>Back to Today Screen</span>
+          </a>
+
+          <button type="button" class="btn btn-secondary" onclick="window.print()" aria-label="Print this appointment confirmation">
+            <span aria-hidden="true">🖨️</span>
+            <span>Print Appointment Card</span>
+          </button>
+        </div>
+
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <svg class="brand-logo-svg" style="width:36px; height:36px;" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="#E6F4F2" stroke="#006B67" stroke-width="2.5" />
+          <path d="M16 38 C 22 36, 26 28, 32 20 C 35 16, 41 14, 46 16 C 49 17, 52 20, 50 23 C 48 25, 43 27, 39 28 C 45 28, 52 32, 53 36 C 48 37, 42 36, 36 34 C 33 37, 28 42, 22 44 Z" fill="#006B67" />
+          <path d="M29 23 C 33 13, 41 9, 44 11 C 41 16, 36 21, 31 24 Z" fill="#064542" />
+        </svg>
+        <span>Medibloom</span>
+      </div>
+      <div class="footer-tagline">“Health That Grows Daily”</div>
+      <div class="footer-copy">Designed with high contrast &amp; large text for seniors, children, and caring families.</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    /**
+     * Confirmation Page Logic:
+     * - Load appointment from localStorage (STORAGE_KEYS.PENDING_APPOINTMENT).
+     * - Fallback gracefully to default sample appointment if visited directly.
+     * - Render clear printable appointment ticket.
+     */
+    document.addEventListener("DOMContentLoaded", () => {
+      let appointment = null;
+      try {
+        const raw = localStorage.getItem(STORAGE_KEYS.PENDING_APPOINTMENT);
+        if (raw) {
+          appointment = JSON.parse(raw);
+        }
+      } catch (e) {
+        console.warn("Could not read appointment from storage:", e);
+      }
+
+      // Default sample fallback if visited directly
+      if (!appointment) {
+        const doc = MEDIBLOOM_DATA.doctors[0];
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        const yyyy = tomorrow.getFullYear();
+        const mm = String(tomorrow.getMonth() + 1).padStart(2, "0");
+        const dd = String(tomorrow.getDate()).padStart(2, "0");
+
+        appointment = {
+          id: "sample-apt-01",
+          doctorName: doc.name,
+          doctorSpecialty: doc.specialty,
+          clinic: doc.clinic,
+          date: `${yyyy}-${mm}-${dd}`,
+          timeSlot: "10:30 AM",
+          patientName: "Margaret Chen",
+          ageGroup: "Senior (55+)",
+          phone: "(555) 321-8899",
+          reason: "Blood Pressure & Heart Review",
+          specialNotes: "Wheelchair assistance requested at clinic entrance."
+        };
+      }
+
+      // Format Date string
+      let formattedDate = appointment.date;
+      if (appointment.date && appointment.date.includes("-")) {
+        const parts = appointment.date.split("-");
+        const dObj = new Date(parts[0], parts[1] - 1, parts[2]);
+        formattedDate = dObj.toLocaleDateString(undefined, {
+          weekday: 'long',
+          month: 'long',
+          day: 'numeric',
+          year: 'numeric'
+        });
+      }
+
+      // Populate Ticket
+      const ticketGrid = document.getElementById("ticket-grid");
+      ticketGrid.innerHTML = `
+        <div class="ticket-item">
+          <strong>Doctor:</strong>
+          <span>${appointment.doctorName}</span>
+          <div style="font-size: 1.05rem; color: var(--text-muted);">${appointment.doctorSpecialty}</div>
+        </div>
+
+        <div class="ticket-item">
+          <strong>Date &amp; Time:</strong>
+          <span>${formattedDate}</span>
+          <div style="font-size: 1.15rem; color: var(--teal-primary); font-weight: 800;">${appointment.timeSlot}</div>
+        </div>
+
+        <div class="ticket-item">
+          <strong>Patient Name:</strong>
+          <span>${appointment.patientName}</span>
+          <div style="font-size: 1.05rem; color: var(--text-muted);">${appointment.ageGroup}</div>
+        </div>
+
+        <div class="ticket-item">
+          <strong>Clinic Location:</strong>
+          <span>${appointment.clinic}</span>
+        </div>
+
+        <div class="ticket-item" style="grid-column: 1 / -1; border-top: 1px solid var(--teal-border); padding-top: 10px;">
+          <strong>Reason for Visit:</strong>
+          <span>${appointment.reason}</span>
+        </div>
+
+        ${appointment.specialNotes && appointment.specialNotes !== "None" ? `
+          <div class="ticket-item" style="grid-column: 1 / -1;">
+            <strong>Special Comfort / Accessibility Requests:</strong>
+            <span style="font-style: italic;">${appointment.specialNotes}</span>
+          </div>
+        ` : ''}
+
+        <div class="ticket-item" style="grid-column: 1 / -1; background: var(--teal-light); padding: 10px 14px; border-radius: var(--radius-sm);">
+          <strong>📱 SMS Reminder:</strong>
+          <span>A confirmation reminder has been scheduled for ${appointment.phone}.</span>
+        </div>
+      `;
+
+      // Update subtitle greeting
+      const msgText = document.getElementById("confirm-message-text");
+      msgText.textContent = `Appointment confirmed for ${appointment.patientName} with ${appointment.doctorName}. We've saved your booking to your Medibloom record!`;
+    });
+  </script>
+</body>
+</html>
