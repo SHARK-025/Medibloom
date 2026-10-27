@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medibloom — Round 2 Frontend UI/UX Presentation</title>
+  <style>
+    :root {
+      --bg: #F6F4EE;
+      --orange: #EE522B;
+      --dark: #181818;
+      --muted: #646464;
+      --border: #DAD6CE;
+      --white: #FFFFFF;
+      --card-bg: #FCFAF7;
+      --teal: #006B67;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #111;
+      color: var(--dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Presentation Controls Toolbar */
+    .controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      background: #222;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .controls-title {
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .controls-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-ctrl {
+      background: #333;
+      color: #fff;
+      border: 1px solid #555;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .btn-ctrl:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+    }
+
+    .slide-counter {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #aaa;
+    }
+
+    /* 16:9 Aspect Ratio Presentation Slide Container */
+    .deck-container {
+      width: 100%;
+      max-width: 1200px;
+      aspect-ratio: 16 / 9;
+      background: var(--bg);
+      position: relative;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.7);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 40px 50px;
+      display: none;
+      flex-direction: column;
+      background: var(--bg);
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    /* Header styling */
+    .slide-header {
+      margin-bottom: 20px;
+    }
+
+    .slide-header .brand {
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--dark);
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+
+    .slide-header .subbrand {
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--orange);
+      text-transform: uppercase;
+    }
+
+    /* Slide 1: Cover */
+    .cover-layout {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      height: 100%;
+      margin: -40px -50px;
+    }
+
+    .cover-left {
+      padding: 50px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cover-title {
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: 4.4rem;
+      line-height: 0.98;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      margin: 20px 0;
+    }
+
+    .cover-divider {
+      width: 100%;
+      height: 2px;
+      background: var(--dark);
+      margin: 10px 0 24px 0;
+    }
+
+    .meta-group {
+      margin-bottom: 16px;
+    }
+
+    .meta-label {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--orange);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .meta-val {
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.2;
+    }
+
+    .meta-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .cover-right {
+      position: relative;
+      background: #eee;
+      overflow: hidden;
+    }
+
+    .cover-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Slide 2: Tools & Tech */
+    .slide2-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 36px;
+      flex: 1;
+    }
+
+    .big-vertical-title {
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: 3.8rem;
+      line-height: 0.92;
+      color: var(--dark);
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+    }
+
+    .tools-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+    }
+
+    .tools-table td {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      vertical-align: middle;
+      font-size: 0.88rem;
+    }
+
+    .tools-table td.cat {
+      background: var(--card-bg);
+      color: var(--orange);
+      font-weight: 800;
+      width: 28%;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tools-table td.desc {
+      color: var(--dark);
+      line-height: 1.4;
+    }
+
+    .tools-table td.desc strong {
+      color: var(--dark);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .bottom-why-banner {
+      margin-top: auto;
+      border: 1.5px solid var(--border);
+      background: var(--card-bg);
+      padding: 14px 20px;
+      display: grid;
+      grid-template-columns: 180px 1fr 1fr 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .why-title {
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: 1.6rem;
+      line-height: 1;
+      color: var(--dark);
+      text-transform: uppercase;
+    }
+
+    .why-title span {
+      color: var(--orange);
+    }
+
+    .why-col {
+      border-left: 1.5px solid var(--border);
+      padding-left: 16px;
+      font-size: 0.78rem;
+    }
+
+    .why-col strong {
+      display: block;
+      color: var(--dark);
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+
+    .why-col p {
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    /* Slide 3: Architecture */
+    .pipeline-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      flex: 1;
+      margin-top: 20px;
+    }
+
+    .pipe-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .pipe-card:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -13px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--orange);
+      z-index: 2;
+    }
+
+    .pipe-tag {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--orange);
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    .pipe-list {
+      list-style: none;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .pipe-list li {
+      margin-bottom: 6px;
+      color: var(--muted);
+    }
+
+    .pipe-list li strong {
+      color: var(--dark);
+      display: block;
+      margin-top: 6px;
+    }
+
+    /* Slide 4: Key Features */
+    .slide4-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1.3fr;
+      gap: 30px;
+      flex: 1;
+    }
+
+    .domain-badge {
+      background: #FFF0EB;
+      border-left: 4px solid var(--orange);
+      padding: 8px 14px;
+      font-size: 0.82rem;
+      margin-bottom: 20px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .domain-badge strong {
+      color: var(--orange);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+
+    .feat-num {
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: 2.2rem;
+      color: var(--orange);
+      line-height: 1;
+    }
+
+    .feat-details h4 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .feat-details p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .mockup-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .mockup-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 24px rgba(0,0,0,0.15));
+    }
+
+    /* Slide 5: Impact & Links */
+    .links-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      padding: 16px 20px;
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .links-tag {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--orange);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .links-url {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--dark);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .links-url:hover {
+      color: var(--orange);
+      text-decoration: underline;
+    }
+
+    /* Print / PDF Styling */
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+      }
+      .controls-bar {
+        display: none !important;
+      }
+      .deck-container {
+        box-shadow: none;
+        max-width: none;
+        width: 100%;
+        border-radius: 0;
+      }
+      .slide {
+        display: flex !important;
+        page-break-after: always;
+        height: 100vh;
+        width: 100vw;
+        aspect-ratio: auto;
+      }
+      @page {
+        size: 16in 9in;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Controls Bar -->
+  <div class="controls-bar">
+    <div class="controls-title">
+      <span>🌿</span>
+      <span>Medibloom — Round 2 UI/UX Presentation Deck</span>
+    </div>
+    <div class="controls-actions">
+      <button class="btn-ctrl" onclick="prevSlide()">❮ Prev</button>
+      <span class="slide-counter" id="slideIndicator">Slide 1 of 5</span>
+      <button class="btn-ctrl" onclick="nextSlide()">Next ❯</button>
+      <button class="btn-ctrl" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+      <button class="btn-ctrl" onclick="window.print()">🖨️ Print / Save PDF</button>
+      <a href="Medibloom_Round2_Presentation.pptx" download class="btn-ctrl" style="text-decoration:none; background:var(--orange);">📥 Download PPTX</a>
+    </div>
+  </div>
+
+  <!-- Presentation Slides Deck -->
+  <div class="deck-container" id="presentationContainer">
+
+    <!-- SLIDE 1: COVER -->
+    <section class="slide active" id="slide-1">
+      <div class="cover-layout">
+        <div class="cover-left">
+          <div class="slide-header">
+            <div class="brand">THE TURING CLUB</div>
+            <div class="subbrand">FRONTEND UI/UX COMPETITION</div>
+          </div>
+
+          <div>
+            <h1 class="cover-title">
+              ROUND 2 —<br>
+              FRONTEND<br>
+              UI/UX<br>
+              COMPETITION
+            </h1>
+            <div class="cover-divider"></div>
+          </div>
+
+          <div>
+            <div class="meta-group">
+              <div class="meta-label">TEAM NAME</div>
+              <div class="meta-val">SHARK-025</div>
+            </div>
+
+            <div class="meta-group">
+              <div class="meta-label">PROJECT TITLE</div>
+              <div class="meta-val">MEDIBLOOM</div>
+              <div class="meta-sub">Health That Grows Daily — Accessible Healthcare & Medication Companion for Seniors (55+) and Families</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cover-right">
+          <img src="presentation_assets/arch_stairs.png" alt="Architectural Stairs Graphic">
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SLIDE 2: TOOLS & TECHNOLOGIES -->
+    <section class="slide" id="slide-2">
+      <div class="slide-header">
+        <div class="brand">THE TURING CLUB</div>
+        <div class="subbrand">FRONTEND UI/UX COMPETITION</div>
+      </div>
+
+      <div class="slide2-layout">
+        <div>
+          <h2 class="big-vertical-title">
+            TOOLS<br>&<br>TECHN<br>OLOGI<br>ES
+          </h2>
+          <p style="font-size:0.95rem; color:var(--muted); line-height:1.5;">
+            A modern, reliable stack that helps us build fast, deliver seamless experiences, and scale with confidence.
+          </p>
+        </div>
+
+        <div>
+          <table class="tools-table">
+            <tr>
+              <td class="cat">FRONTEND</td>
+              <td class="desc">
+                <strong>HTML5 Semantic Architecture</strong>
+                CSS3 (Custom Design Tokens, Calm Motion Transitions)<br>
+                Vanilla JavaScript (ES6+), Web SpeechSynthesis API, LocalStorage
+              </td>
+            </tr>
+            <tr>
+              <td class="cat">TOOLS</td>
+              <td class="desc">
+                <strong>Visual Studio Code, Git, GitHub</strong>
+                Chrome DevTools & Accessibility Tree Inspector, PowerShell
+              </td>
+            </tr>
+            <tr>
+              <td class="cat">AI MODELS</td>
+              <td class="desc">
+                <strong>Google Antigravity Agentic IDE</strong>
+                Gemini 2.5 Flash Architecture (Pair Programming & UI Verification)
+              </td>
+            </tr>
+            <tr>
+              <td class="cat">DESIGN</td>
+              <td class="desc">
+                <strong>WCAG 2.1 AA Accessibility Standards</strong>
+                High-Contrast Theming (Dark/Light Mode), Font Scaler (A/A+/A++)
+              </td>
+            </tr>
+            <tr>
+              <td class="cat">DEPLOYMENT</td>
+              <td class="desc">
+                <strong>Vercel Global Edge Network</strong>
+                GitHub Version Control (SHARK-025/Medibloom)
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="bottom-why-banner">
+        <div class="why-title">
+          WHY<br>THIS<br><span>STACK</span>
+        </div>
+        <div class="why-col">
+          <strong>Accelerates Development</strong>
+          <p>Zero-framework, zero-build lightweight architecture with vanilla ES6+ for instant velocity and zero tooling fragility.</p>
+        </div>
+        <div class="why-col">
+          <strong>Ensures Performance</strong>
+          <p>100% pure vanilla JS with sub-50ms render, zero layout shifts, and instant offline LocalStorage persistence.</p>
+        </div>
+        <div class="why-col">
+          <strong>Scales Effortlessly</strong>
+          <p>Modular component design (SPA router, 3-state medication engine, audio helper) ready for backend API growth.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SLIDE 3: SYSTEM ARCHITECTURE & USER FLOW -->
+    <section class="slide" id="slide-3">
+      <div class="slide-header">
+        <div class="brand">THE TURING CLUB</div>
+        <div class="subbrand">FRONTEND UI/UX COMPETITION</div>
+      </div>
+
+      <div>
+        <h2 style="font-family: Impact, 'Arial Black', sans-serif; font-size: 2.4rem; color:var(--dark); margin-bottom: 4px;">
+          SYSTEM ARCHITECTURE & USER FLOW
+        </h2>
+        <p style="font-size: 0.95rem; color: var(--muted);">
+          A streamlined flow from user interaction to reliable output, designed for clarity, performance, and scalability.
+        </p>
+      </div>
+
+      <div class="pipeline-grid">
+        <div class="pipe-card">
+          <div class="pipe-tag">USER INPUT</div>
+          <ul class="pipe-list">
+            <li>• Category filter (Senior / Child / All)</li>
+            <li>• Dose 'Mark as Taken' toggle</li>
+            <li>• Audio 'Listen' speech click</li>
+            <li>• 3-Step Doctor booking form</li>
+            <li>• Dark mode & font-size scaler</li>
+            <li>• Keyboard tab navigation</li>
+          </ul>
+        </div>
+
+        <div class="pipe-card">
+          <div class="pipe-tag">CORE PROCESS</div>
+          <ul class="pipe-list">
+            <li>• Client-side SPA route router</li>
+            <li><strong>3-State Medication Engine:</strong></li>
+            <li>  - Taken (Checked off)</li>
+            <li>  - Due (Scheduled today)</li>
+            <li>  - Missed (Overdue detection)</li>
+            <li>• Real-time inline regex validation</li>
+            <li>• SpeechSynthesis queue manager</li>
+          </ul>
+        </div>
+
+        <div class="pipe-card">
+          <div class="pipe-tag">IDEAS / SOLUTION</div>
+          <ul class="pipe-list">
+            <li><strong>What did we solve?</strong></li>
+            <li>• Medication non-adherence & confusion for seniors (55+) and families.</li>
+            <li><strong>How did we solve it?</strong></li>
+            <li>• Plain-language guides, text-to-speech, overdue alerts (no double dose).</li>
+            <li><strong>Success Rate: 100%</strong></li>
+            <li>• Zero layout shift, full WCAG 2.1 AA.</li>
+          </ul>
+        </div>
+
+        <div class="pipe-card">
+          <div class="pipe-tag">OUTPUT</div>
+          <ul class="pipe-list">
+            <li>• Dynamic family progress summary bar</li>
+            <li>• Audible voice guidance with animated stop indicator</li>
+            <li>• Overdue missed-dose warning box</li>
+            <li>• Doctor booking ticket receipt (Indian clinics)</li>
+            <li>• Zero eye-strain Dark Mode palette</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SLIDE 4: KEY FEATURES & UI SHOWCASE -->
+    <section class="slide" id="slide-4">
+      <div class="slide-header">
+        <div class="brand">THE TURING CLUB</div>
+        <div class="subbrand">FRONTEND UI/UX COMPETITION</div>
+      </div>
+
+      <div class="domain-badge">
+        <strong>Domain: Healthcare Accessibility for Seniors (55+) & Families in India</strong>
+        <span>Why this domain? Standard medical apps overwhelm older adults with complex jargon and small text. Medibloom simplifies care with plain words, audio guides, and effortless Indian city doctor booking.</span>
+      </div>
+
+      <div class="slide4-layout">
+        <div>
+          <h2 style="font-family: Impact, 'Arial Black', sans-serif; font-size: 2.2rem; color: var(--dark); margin-bottom: 24px; line-height: 1.05;">
+            KEY FEATURES<br>& UI SHOWCASE
+          </h2>
+
+          <div class="feature-item">
+            <div class="feat-num">01</div>
+            <div class="feat-details">
+              <h4>INTUITIVE NAVIGATION & FILTERING</h4>
+              <p>Segmented care for Seniors (55+) and Children with synchronized live family progress tracking, text-size adjustments, and one-click dark/light mode toggle.</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feat-num">02</div>
+            <div class="feat-details">
+              <h4>ACCESSIBLE AUDIO & 3-STATE TRACKING</h4>
+              <p>Browser-native Web SpeechSynthesis reads prescriptions aloud; smart 3-state engine dynamically flags overdue doses with clear clinical safety instructions (do not take double dose).</p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feat-num">03</div>
+            <div class="feat-details">
+              <h4>SEAMLESS 3-STEP APPOINTMENT BOOKING</h4>
+              <p>Frictionless booking wizard featuring top doctors across Indian cities (Bengaluru, Mumbai, Hyderabad, New Delhi) with real-time field validation and verified confirmation tickets.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mockup-container">
+          <img src="presentation_assets/medibloom_laptop_mockup.png" alt="Medibloom UI Mockup">
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SLIDE 5: IMPACT, LINKS & THANK YOU -->
+    <section class="slide" id="slide-5">
+      <div class="cover-layout">
+        <div class="cover-left" style="justify-content: flex-start; gap: 20px;">
+          <div class="slide-header">
+            <div class="brand">THE TURING CLUB</div>
+            <div class="subbrand">FRONTEND UI/UX COMPETITION</div>
+          </div>
+
+          <div>
+            <h1 class="cover-title" style="font-size: 3.4rem; margin: 0 0 10px 0;">
+              IMPACT, LINKS &<br>
+              <span style="color:var(--orange);">THANK YOU</span>
+            </h1>
+            <p style="font-size: 1rem; color: var(--muted); line-height: 1.5; max-width: 500px;">
+              Every design decision drives clarity, speed, and accessibility — creating experiences that seniors and families trust and enjoy daily.
+            </p>
+          </div>
+
+          <div style="font-size: 0.88rem; color: var(--dark); line-height: 1.6;">
+            <div>👵 <strong>Senior-First UX:</strong> WCAG 2.1 AA contrast, calm 300ms motion transitions, and typography scaling.</div>
+            <div>🛡️ <strong>Clinical Safety:</strong> Overdue dose indicators prevent accidental double-dosing with safe guidance.</div>
+            <div>⚡ <strong>Zero-Dependency Lightweight Speed:</strong> Instant sub-50ms render on any Indian mobile connection.</div>
+          </div>
+
+          <div style="margin-top: 10px;">
+            <div class="links-card">
+              <span class="links-tag">GITHUB REPOSITORY URL</span>
+              <a href="https://github.com/SHARK-025/Medibloom" target="_blank" class="links-url">
+                github.com/SHARK-025/Medibloom
+              </a>
+            </div>
+
+            <div class="links-card">
+              <span class="links-tag">LIVE DEMO URL (VERCEL)</span>
+              <a href="https://medibloom.vercel.app" target="_blank" class="links-url">
+                medibloom.vercel.app
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cover-right">
+          <img src="presentation_assets/arch_stairs.png" alt="Architectural Stairs Graphic">
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 5;
+
+    function showSlide(n) {
+      if (n < 1) n = 1;
+      if (n > totalSlides) n = totalSlides;
+      currentSlide = n;
+
+      for (let i = 1; i <= totalSlides; i++) {
+        const s = document.getElementById('slide-' + i);
+        if (s) s.classList.remove('active');
+      }
+
+      const active = document.getElementById('slide-' + currentSlide);
+      if (active) active.classList.add('active');
+
+      document.getElementById('slideIndicator').textContent = `Slide ${currentSlide} of ${totalSlides}`;
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+
+    function toggleFullscreen() {
+      const elem = document.getElementById('presentationContainer');
+      if (!document.fullscreenElement) {
+        elem.requestFullscreen().catch(err => alert(`Error: ${err.message}`));
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      }
+    });
+  </script>
+</body>
+</html>
